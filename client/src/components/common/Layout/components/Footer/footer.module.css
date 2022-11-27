@@ -1,0 +1,140 @@
+.Footer {
+  background-color: #f0f0f0;
+}
+
+.Row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.CopyRightsText {
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.Holder {
+  width: 50%;
+}
+
+.Header {
+  text-transform: uppercase;
+}
+.Link {
+  text-decoration: none;
+}
+
+.LinkContainer {
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.NavLink {
+  color: var(--purple) !important;
+  text-decoration: none;
+  margin: 8px 0;
+  font-weight: 500;
+  position: relative;
+  width: max-content;
+  text-transform: uppercase;
+}
+
+.NavLink::after {
+  content: "";
+  background-color: var(--purple);
+  height: 2px;
+  width: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 2px;
+  transition: 0.2s;
+}
+
+.NavLink:hover::after {
+  width: 100%;
+}
+
+.SocialMediaBtn {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  margin: 12px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.1s;
+}
+
+.SocialMediaBtn:active,
+.SocialMediaBtn:focus,
+.SocialMediaBtn:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.ExtraPadding {
+  padding-bottom: 0;
+}
+
+/* icon effects */
+.FaceBook {
+  color: #3b5998;
+}
+
+.FaceBook:active,
+.FaceBook:focus,
+.FaceBook:hover {
+  color: white;
+  background-color: #3b5998;
+  filter: drop-shadow(0 0 8px #3b5998);
+}
+
+.Twitter {
+  color: #00acee;
+}
+
+.Twitter:active,
+.Twitter:focus,
+.Twitter:hover {
+  color: white;
+  background-color: #00acee;
+  filter: drop-shadow(0 0 8px #00acee);
+}
+
+.Instagram {
+  background: -webkit-linear-gradient(
+    225deg,
+    rgba(129, 52, 175, 1) 0%,
+    rgba(221, 42, 123, 1) 50%,
+    rgba(254, 218, 119, 1) 85%,
+    rgba(245, 133, 41, 1) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.Instagram:active,
+.Instagram:focus,
+.Instagram:hover {
+  color: white;
+  background-color: rgba(129, 52, 175, 1);
+  filter: drop-shadow(0 0 8px rgba(129, 52, 175, 1));
+  background-clip: initial;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+}
+
+.YouTube {
+  color: #ff0000;
+}
+
+.YouTube:active,
+.YouTube:focus,
+.YouTube:hover {
+  color: white;
+  background-color: #ff0000;
+  filter: drop-shadow(0 0 8px #ff0000);
+}

@@ -1,0 +1,48 @@
+.NavLinksHolder {
+  display: flex;
+}
+
+.NavLinkStyle {
+  color: var(--purple);
+  margin: 0 8px;
+  font-weight: 700;
+  text-decoration: none;
+  position: relative;
+  width: max-content;
+}
+
+.NavLinkStyle:hover {
+  color: var(--purple);
+}
+
+.NavLinkStyle::after {
+  content: "";
+  background-color: var(--purple);
+  height: 2px;
+  width: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 2px;
+  transition: 0.2s;
+}
+
+.NavLinkStyle:hover::after {
+  width: 100%;
+}
+
+.NavLinkActive {
+  color: var(--blue);
+}
+
+.NavLinkActive:hover {
+  color: var(--blue);
+
+}
+
+.NavLinkActive::after {
+  background-color: var(--blue);
+  width: 100%;
+}
+
+
