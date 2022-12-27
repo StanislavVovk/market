@@ -1,0 +1,14 @@
+.itemText {
+  width: max-content;
+  width: -moz-max-content;
+}
+
+.buttonWrapper {
+  display: flex;
+}
+
+.buttonStyle {
+  border-color: initial;
+  background-color: rgba(0, 0, 0, 0.5);
+  outline-color: initial !important;
+}

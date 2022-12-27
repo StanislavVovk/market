@@ -15,7 +15,7 @@ const { NavBarContainer, NavBar, NavIcon, NavLinksHolder }: INavBarStyle = style
 
 export const Navigation: React.FC = (): JSX.Element => {
   return (
-    <div className={ NavBar }>
+    <div className={ `${NavBar}` }>
       <div className={ `container ${NavBarContainer}` }>
         <div className={ NavIcon }>
           <Link to="/">
