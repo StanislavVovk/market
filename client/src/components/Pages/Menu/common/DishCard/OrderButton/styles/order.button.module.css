@@ -11,4 +11,14 @@
   border-color: initial;
   background-color: rgba(0, 0, 0, 0.5);
   outline-color: initial !important;
+  height: 28px;
+  width: 28px;
+  border-radius: 2px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 8px;
+  transition: 0.1s;
 }
+

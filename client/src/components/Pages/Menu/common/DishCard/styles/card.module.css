@@ -7,7 +7,7 @@
   width: -moz-max-content;
 }
 
-.card {
+.Body {
   background-color: #ddd;
   display: inline-block;
   padding: 0;
@@ -18,7 +18,16 @@
   transition: .2s;
 }
 
-.cardImage {
+.CardImageWrapper {
+  height: 150px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.CardImage {
   background-position: 50%;
   background-size: cover;
   height: 100%;
@@ -26,11 +35,34 @@
   transition: .2s;
 }
 
-.cardImageWrapper {
-  height: 150px;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.Body:hover {
+  transform: scale(1.2);
+}
+
+@media (max-width: 1400px) {
+  .Body {
+    margin: 8px 40px 8px 0;
+    width: 200px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .Body {
+    margin: 8px 16px 8px 0;
+    width: 185px;
+  }
+}
+
+@media (max-width: 992px) {
+  .Body {
+    margin: 8px 24px 8px 0;
+    width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .Body {
+    margin: 8px 0;
+    width: 100%;
+  }
 }
