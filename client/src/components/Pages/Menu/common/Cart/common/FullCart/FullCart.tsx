@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 import style from '../../styles/cart.module.css';
 import { ICartStyle } from '../../Cart';
-import { useAppDispatch } from '../../../../../../../store/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../../../../store/hooks/hooks';
 import { cartSlice } from '../../../../../../../store/cart/reducer';
+import CartItem from '../../../../../../common/CartItem/CartItem';
+import { ICartItem } from '../../../../../../../models/ICartItem';
 
-const { Body, ClearButton, CartBody }: ICartStyle = style;
-const FullCart = () => {
+const { Body, ClearButton, CartItemWrapper }: ICartStyle = style;
+const FullCart: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
+  const cartSelector = useAppSelector(state => state.cartReducer.cart)
   const { clearCart } = cartSlice.actions
   return (
     <div className={`mt-4 ${Body}`}>
@@ -16,7 +19,11 @@ const FullCart = () => {
             <button onClick={() => dispatch(clearCart())}> Clear cart</button>
               </span>
       </div>
-      <div className={`mx-2 ${CartBody}`}></div>
+      <div className={`mx-2 ${CartItemWrapper}`}>
+        {cartSelector.map((item: ICartItem): JSX.Element => {
+          return <CartItem key={item.id} item={item}/>
+        })}
+      </div>
     </div>
   );
 };

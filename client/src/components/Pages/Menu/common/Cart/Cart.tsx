@@ -5,7 +5,7 @@ import VoidCart from './common/VoidCart/VoidCart';
 
 export interface ICartStyle {
   Body: string
-  CartBody: string
+  CartItemWrapper: string
   ClearButton: string
   EmptyCart: string
 }

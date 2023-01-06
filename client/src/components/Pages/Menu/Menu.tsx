@@ -15,6 +15,7 @@ export interface IDishCardProps {
   imageURL: string
   name: string
   price: number
+  quantity?: number
 }
 
 const { clearfix, menuContainer, pageTitle }: IMenuPageStyle = style
@@ -22,16 +23,16 @@ const { clearfix, menuContainer, pageTitle }: IMenuPageStyle = style
 export const Menu: FC = (): JSX.Element => {
   const item1: IDishCardProps = {
     id: 1,
-    name: '1',
+    name: 'Cool pizza',
     description: '1',
     price: 12,
     imageURL: 'https://firebasestorage.googleapis.com/v0/b/pizza-man-61510.appspot.com/o/img%2FFarmhouse.webp?alt=media&token=7d776979-1a68-4c22-9679-66c9d82fb439'
   }
   const item2: IDishCardProps = {
     id: 2,
-    name: '1',
-    description: '1',
-    price: 12,
+    name: 'The best pizza',
+    description: '2',
+    price: 13,
     imageURL: 'https://firebasestorage.googleapis.com/v0/b/pizza-man-61510.appspot.com/o/img%2FFarmhouse.webp?alt=media&token=7d776979-1a68-4c22-9679-66c9d82fb439'
   }
   return (
@@ -45,8 +46,6 @@ export const Menu: FC = (): JSX.Element => {
           <div className="my-4">
             <DishCard item={item1}/>
             <DishCard item={item2}/>
-            {/* <DishCard id={3} name={ '3' } description={ '1' } price={ 12 } imageURL={'https://firebasestorage.googleapis.com/v0/b/pizza-man-61510.appspot.com/o/img%2FFarmhouse.webp?alt=media&token=7d776979-1a68-4c22-9679-66c9d82fb439'}/> */}
-            {/* <DishCard id={4} name={ '4' } description={ '1' } price={ 12 } imageURL={'https://firebasestorage.googleapis.com/v0/b/pizza-man-61510.appspot.com/o/img%2FFarmhouse.webp?alt=media&token=7d776979-1a68-4c22-9679-66c9d82fb439'}/> */}
           </div>
         </div>
         <Cart/>

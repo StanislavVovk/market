@@ -4,7 +4,8 @@
 }
 
 .buttonWrapper {
-  display: flex;
+  display: flex !important;
+  width: max-content;
 }
 
 .buttonStyle {

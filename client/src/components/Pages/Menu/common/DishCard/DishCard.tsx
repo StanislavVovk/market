@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import style from './styles/card.module.css'
-import { OrderButton } from './OrderButton/OrderButton';
+import { QuantityController } from '../../../../common/QuantityContoller/QuantityController';
 import { IDishCardProps } from '../../Menu';
 
 export interface IDishCard {
@@ -40,7 +40,7 @@ export const DishCard: FC<IDishCard> = ({ item }): JSX.Element => {
               <strong>$</strong>
               {price}
             </span>
-            <OrderButton item={item}/>
+            <QuantityController item={item}/>
           </div>
         </div>
       </div>

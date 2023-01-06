@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import style from './styles/order.button.module.css'
-import { useAppDispatch, useAppSelector } from '../../../../../../store/hooks/hooks';
-import { cartSlice } from '../../../../../../store/cart/reducer';
-import { IDishCard } from '../DishCard';
-import { ICartItem } from '../../../../../../models/ICartItem';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks/hooks';
+import { cartSlice } from '../../../store/cart/reducer';
+import { IDishCard } from '../../Pages/Menu/common/DishCard/DishCard';
+import { ICartItem } from '../../../models/ICartItem';
 
-interface IOrderButtonStyle {
+interface IQuantityControllerStyle {
   buttonStyle: string
   buttonWrapper: string
   itemText: string
@@ -15,11 +15,9 @@ const {
   buttonStyle,
   buttonWrapper,
   itemText
-}: IOrderButtonStyle = style;
+}: IQuantityControllerStyle = style;
 
-// todo add redux state here
-
-export const OrderButton: FC<IDishCard> = ({ item }): JSX.Element => {
+export const QuantityController: FC<IDishCard> = ({ item }): JSX.Element => {
   const dispatch = useAppDispatch();
   const { cart, itemMap } = useAppSelector(state => state.cartReducer);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

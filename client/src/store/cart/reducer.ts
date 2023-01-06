@@ -22,7 +22,6 @@ export const cartSlice = createSlice({
       // too difficult to refactor this
       if (payload.id in itemMap) {
         cart[itemMap[payload.id]].quantity++;
-        console.log(cart, itemMap)
         // totalPrice += payload.quantity * payload.price
       } else {
         itemMap[payload.id] = cart.length;
