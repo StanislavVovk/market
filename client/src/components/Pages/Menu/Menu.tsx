@@ -1,24 +1,24 @@
 import React, { FC } from 'react';
-import style from './styles/menu.page.module.css'
-import { DishCard } from './common/DishCard/DishCard';
-import { Cart } from './common/common';
+import style from './menu.module.css'
+import { DishCard } from '../../UI/DishCard/DishCard';
+import { Cart } from './components/common';
 
 export interface IMenuPageStyle {
-  menuContainer: string
-  pageTitle: string
-  clearfix: string
+  Clearfix: string
+  MenuContainer: string
+  PageTitle: string
 }
 
 export interface IDishCardProps {
-  id: number
   description: string
+  id: number
   imageURL: string
   name: string
   price: number
   quantity?: number
 }
 
-const { clearfix, menuContainer, pageTitle }: IMenuPageStyle = style
+const { Clearfix, MenuContainer, PageTitle }: IMenuPageStyle = style
 
 export const Menu: FC = (): JSX.Element => {
   const item1: IDishCardProps = {
@@ -36,11 +36,11 @@ export const Menu: FC = (): JSX.Element => {
     imageURL: 'https://firebasestorage.googleapis.com/v0/b/pizza-man-61510.appspot.com/o/img%2FFarmhouse.webp?alt=media&token=7d776979-1a68-4c22-9679-66c9d82fb439'
   }
   return (
-    <div className={`container mt-5 pt-5 ${menuContainer}`}>
+    <div className={`container mt-5 pt-5 ${MenuContainer}`}>
       <h1 className="display-6 mb-0">
-        <strong className={pageTitle}>Menu</strong>
+        <strong className={PageTitle}>Menu</strong>
       </h1>
-      <div className={clearfix}></div>
+      <div className={Clearfix}></div>
       <div className="row">
         <div className="col-lg-8">
           <div className="my-4">
