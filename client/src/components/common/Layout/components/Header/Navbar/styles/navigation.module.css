@@ -2,7 +2,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 10;
+  z-index: 100;
   background-color: #f0f0f0;
   width: 100vw;
   border-radius: 0 0 4px 4px;
@@ -17,6 +17,7 @@
 }
 
 .NavIcon img {
-  width: 80px;
+  width: 60px;
+  height: 60px;
   margin: 8px 0;
 }

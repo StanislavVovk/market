@@ -1,0 +1,17 @@
+.priceText {
+  width: max-content;
+  width: -moz-max-content;
+}
+
+.menuContainer {
+  min-height: 100vh;
+}
+
+.pageTitle {
+  text-transform: uppercase;
+}
+
+.clearfix {
+  background-color: #000000;
+  height: 2px;
+}
