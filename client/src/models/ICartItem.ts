@@ -6,3 +6,8 @@ export interface ICartItem {
   imageURL: string
   quantity: number
 }
+
+export interface ICartRemover {
+  id: number
+  quantity: number
+}

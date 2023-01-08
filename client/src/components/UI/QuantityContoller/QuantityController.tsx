@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import style from './order.button.module.css'
-import { useAppDispatch, useAppSelector } from '../../../store/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../common/hooks/hooks';
 import { cartSlice } from '../../../store/cart/reducer';
 import { IDishCardItem } from '../DishCard/DishCard';
 import { ICartItem } from '../../../models/ICartItem';
@@ -34,10 +34,12 @@ export const QuantityController: FC<IDishCardItem> = ({ item }): JSX.Element => 
   return (
     <div className={`ms-auto my-auto ${buttonWrapper}`}>
       <button className={`${buttonStyle}`} onClick={() => dispatch(decreaseItem(newItem))}>
-        <i className="fa fa-minus" aria-hidden="true"></i>
+        {itemQuantity === 1
+          ? <i className="fa fa-trash" aria-hidden="true"></i>
+          : <i className="fa fa-minus" aria-hidden="true"></i>}
       </button>
       <span className={`my-auto mx-1 font-weight-light ${itemText}`}>
-        <strong>{itemQuantity}</strong>
+        <strong>{`${itemQuantity}×`}</strong>
       </span>
       <button className={`${buttonStyle}`} onClick={() => dispatch(addItem(newItem))}>
         <i className="fa fa-plus" aria-hidden="true"></i>

@@ -35,7 +35,7 @@
   transition: .2s;
 }
 
-.Body:hover {
+.CardImage:hover {
   transform: scale(1.2);
 }
 

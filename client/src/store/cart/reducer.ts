@@ -1,15 +1,17 @@
-import { createSlice, current, PayloadAction } from '@reduxjs/toolkit';
-import { ICartItem } from '../../models/ICartItem';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ICartItem, ICartRemover } from '../../models/ICartItem';
 
 interface ICartInitialState {
   cart: ICartItem[]
   itemMap: Record<number, number>
+  totalEquality: number
   totalPrice: number
 }
 
 const initialState: ICartInitialState = {
   cart: [],
   itemMap: {},
+  totalEquality: 0,
   totalPrice: 0
 }
 
@@ -28,13 +30,13 @@ export const cartSlice = createSlice({
         state.cart.push({ ...payload })
       }
       state.totalPrice += payload.price
+      state.totalEquality++
     },
     clearCart: () => {
       return initialState;
     },
     decreaseItem: (state, { payload }: PayloadAction<ICartItem>) => {
       if (!(payload.id in state.itemMap)) {
-        console.log(current(state))
         return state
       }
       state.cart[state.itemMap[payload.id]].quantity--;
@@ -48,8 +50,19 @@ export const cartSlice = createSlice({
         }
       }
       state.totalPrice -= payload.price
+      state.totalEquality--
     },
-    removeItem: (state, action) => {
+    removeItem: (state, { payload }: PayloadAction<ICartRemover>) => {
+      // todo recreate as function
+      const item = state.cart[state.itemMap[payload.id]]
+      state.totalPrice -= item.quantity * item.price
+      state.totalEquality -= item.quantity
+      state.cart = [...state.cart].filter((cartItem) => cartItem.id !== payload.id)
+      const index = state.itemMap[payload.id]
+      delete state.itemMap[payload.id]
+      for (let i = index; i < Object.keys(state.itemMap).length; i++) {
+        state.itemMap[state.cart[i].id] -= 1
+      }
     }
   }
 })
