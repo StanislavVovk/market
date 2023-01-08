@@ -1,8 +1,15 @@
 .Body {
-  background-color: #ddd;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 64px;
+  position: relative;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
+  background-color: #ffffff;
+  box-sizing: border-box;
+  padding: 0 16px 16px;
+  border-radius: 10px;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 450px;
+  max-width: 360px;
 }
 
 .ClearButton {
@@ -22,12 +29,19 @@
   transition: .15s ease-in-out;
 }
 
+.CartWrapper {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 100px;
+}
+
 .CartItemWrapper {
-  height: 380px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  padding-bottom: 84px;
-  margin-top: 8px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 0;
+  max-height: 100vh;
 }
 
 .EmptyCart {
@@ -35,7 +49,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 400px;
+  min-height: 300px;
   font-size: 32px;
   font-weight: 700;
 }
@@ -58,15 +72,31 @@
 }
 
 .CartUtils {
-  position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #ddd;
+}
+
+.Separator {
+  min-height: 36px;
 }
 
 .CartTotalPrice {
   display: inline-block;
   margin-top: 8px;
   margin-bottom: 12px;
+}
+
+.CartNavigationButton {
+  font-weight: bold;
+  font-size: larger;
+  padding: 8px 0;
+  width: 100%;
+  background-color: #724cf9;
+  color: white;
+  border: none;
+  outline: none !important;
+  box-sizing: border-box;
+  transition: 0.1s;
+  border-radius: 25px;
 }

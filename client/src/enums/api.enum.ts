@@ -1,4 +1,5 @@
 export enum API_ENUM {
+  CART = '/cart',
   HOME = '/',
   MENU = '/menu',
   ORDER = '/order',

@@ -35,6 +35,20 @@ export const Menu: FC = (): JSX.Element => {
     price: 13,
     imageURL: 'https://firebasestorage.googleapis.com/v0/b/pizza-man-61510.appspot.com/o/img%2FFarmhouse.webp?alt=media&token=7d776979-1a68-4c22-9679-66c9d82fb439'
   }
+  const item3: IDishCardProps = {
+    id: 3,
+    name: 'The best pizza',
+    description: '2',
+    price: 13,
+    imageURL: 'https://firebasestorage.googleapis.com/v0/b/pizza-man-61510.appspot.com/o/img%2FFarmhouse.webp?alt=media&token=7d776979-1a68-4c22-9679-66c9d82fb439'
+  }
+  const item4: IDishCardProps = {
+    id: 4,
+    name: 'The best pizza',
+    description: '2',
+    price: 13,
+    imageURL: 'https://firebasestorage.googleapis.com/v0/b/pizza-man-61510.appspot.com/o/img%2FFarmhouse.webp?alt=media&token=7d776979-1a68-4c22-9679-66c9d82fb439'
+  }
   return (
     <div className={`container mt-5 pt-5 ${MenuContainer}`}>
       <h1 className="display-6 mb-0">
@@ -46,6 +60,8 @@ export const Menu: FC = (): JSX.Element => {
           <div className="my-4">
             <DishCard item={item1}/>
             <DishCard item={item2}/>
+            <DishCard item={item3}/>
+            <DishCard item={item4}/>
           </div>
         </div>
         <Cart/>
