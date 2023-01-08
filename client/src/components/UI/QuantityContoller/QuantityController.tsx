@@ -20,7 +20,6 @@ const {
 export const QuantityController: FC<IDishCardItem> = ({ item }): JSX.Element => {
   const dispatch = useAppDispatch();
   const { cart, itemMap } = useAppSelector(state => state.cartReducer);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { addItem, decreaseItem } = cartSlice.actions;
   const itemQuantity = item.id in itemMap ? cart[itemMap[item.id]].quantity : 0
   const newItem: ICartItem = {
@@ -34,7 +33,7 @@ export const QuantityController: FC<IDishCardItem> = ({ item }): JSX.Element => 
 
   return (
     <div className={`ms-auto my-auto ${buttonWrapper}`}>
-      <button className={`${buttonStyle}`}>
+      <button className={`${buttonStyle}`} onClick={() => dispatch(decreaseItem(newItem))}>
         <i className="fa fa-minus" aria-hidden="true"></i>
       </button>
       <span className={`my-auto mx-1 font-weight-light ${itemText}`}>
