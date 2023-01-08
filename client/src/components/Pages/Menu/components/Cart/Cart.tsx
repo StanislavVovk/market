@@ -5,6 +5,8 @@ import { FullCart, VoidCart } from './components/common'
 export interface ICartStyle {
   Body: string
   CartItemWrapper: string
+  CartTotalPrice: string
+  CartUtils: string
   ClearButton: string
   EmptyCart: string
 }

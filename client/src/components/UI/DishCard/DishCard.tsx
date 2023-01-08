@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import style from './dishcard.module.css'
-import { QuantityController } from '../QuantityContoller/QuantityController';
+import { QuantityController } from '../common';
 import { IDishCardProps } from '../../Pages/Menu/Menu';
 
 export interface IDishCardItem {

@@ -3,13 +3,13 @@ import style from '../cart.module.css';
 import { ICartStyle } from '../Cart';
 import { useAppDispatch, useAppSelector } from '../../../../../../store/hooks/hooks';
 import { cartSlice } from '../../../../../../store/cart/reducer';
-import CartItem from '../../../../../UI/CartItem/CartItem';
+import { CartItem } from '../../../../../UI/common';
 import { ICartItem } from '../../../../../../models/ICartItem';
 
-const { Body, ClearButton, CartItemWrapper }: ICartStyle = style;
+const { Body, ClearButton, CartItemWrapper, CartUtils, CartTotalPrice }: ICartStyle = style;
 const FullCart: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const cartSelector = useAppSelector(state => state.cartReducer.cart)
+  const { cart, totalPrice } = useAppSelector(state => state.cartReducer)
   const { clearCart } = cartSlice.actions
   return (
     <div className={`mt-4 ${Body}`}>
@@ -20,7 +20,12 @@ const FullCart: FC = (): JSX.Element => {
               </span>
       </div>
       <div className={`mx-2 ${CartItemWrapper}`}>
-        {cartSelector.map((item: ICartItem): JSX.Element => <CartItem key={item.id} item={item}/>)}
+        {cart.map((item: ICartItem): JSX.Element => <CartItem key={item.id} item={item}/>)}
+      </div>
+      <div className={`${CartUtils}`}>
+        <strong className={`mx-2${CartTotalPrice}`}>
+          Total price: ${totalPrice}
+        </strong>
       </div>
     </div>
   );
