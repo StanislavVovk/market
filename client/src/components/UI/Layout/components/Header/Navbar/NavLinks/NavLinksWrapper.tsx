@@ -1,23 +1,15 @@
 import React from 'react'
 import style from './navLinks.module.css'
 import { NavLink } from 'react-router-dom';
-import { API_ENUM } from '../../../../../../../enums/api.enum'
-
-interface INavLinksStyle {
-  NavLinkActive: string
-  NavLinkStyle: string
-  NavLinksHolder: string
-}
-
-const { NavLinksHolder, NavLinkStyle, NavLinkActive }: INavLinksStyle = style
+import { API_ENUM } from '../../../../../../../common/enums/api.enum'
 
 const checkActivity = (ActivityStatus: boolean): string => {
-  return ActivityStatus ? NavLinkStyle + ' ' + NavLinkActive : NavLinkStyle;
+  return ActivityStatus ? style.NavLinkStyle.concat(' ', style.NavLinkActive) : style.NavLinkStyle;
 }
 
 export const NavLinksWrapper: React.FC = (): JSX.Element => {
   return (
-    <div className={`ms-auto my-auto ${NavLinksHolder}`}>
+    <div className={`ms-auto my-auto ${style.NavLinksHolder}`}>
       <NavLink to={API_ENUM.HOME} className={({ isActive }): string => checkActivity(isActive)}>
         Home
       </NavLink>

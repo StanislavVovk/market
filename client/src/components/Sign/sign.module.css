@@ -1,0 +1,95 @@
+.ModalTitle {
+  width: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.SocialButtons button {
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+  height: 48px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-family: "Gotham", "Arial", "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 700;
+  border: 1px solid #e4e4e4;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.Divider {
+  max-width: 400px;
+  margin: 24px auto;
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 300;
+  color: #6e6e6e;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.Divider::before {
+  content: "";
+  border-bottom: 1px solid #c1c1c1;
+  flex: 1 0;
+  margin-right: 12px;
+}
+
+.Divider::after {
+  content: "";
+  border-bottom: 1px solid #c1c1c1;
+  flex: 1 0;
+  margin-left: 12px;
+}
+
+.SubmitButton {
+  position: relative;
+  text-align: center;
+  padding-left: 16px;
+  padding-right: 16px;
+  height: 48px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: var(--purple);
+  color: var(--bs-white);
+  box-shadow: 0 3px 5px 0 #0000001a;
+  border: none;
+  width: 100%;
+  max-width: 340px;
+  margin-top: 12px;
+}
+
+.Suggestion {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.SuggestionButton {
+  position: relative;
+  text-align: center;
+  padding-left: 12px;
+  padding-right: 12px;
+  height: 38px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 0;
+  background-color: white;
+  text-decoration-line: underline;
+  color: black;
+}
+.SuggestionButton:hover {
+  background-color: unset;
+  color: black;
+}

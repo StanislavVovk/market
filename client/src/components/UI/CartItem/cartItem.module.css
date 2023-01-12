@@ -13,10 +13,8 @@
 }
 
 .CartItemPrice {
-  display: inline-block;
-  width: max-content;
-  margin-top: auto;
-  margin-bottom: auto;
+  display: flex;
+  align-items: center;
 }
 
 .RemoveItemButton {

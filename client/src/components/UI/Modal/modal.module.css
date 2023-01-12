@@ -1,0 +1,10 @@
+.ModalTop {
+  border-bottom: 0 !important;
+  padding: 16px !important;
+}
+
+.ModalBody {
+  max-width: 400px;
+  margin: 0 auto;
+  width: 100%;
+}

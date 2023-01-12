@@ -3,29 +3,21 @@ import { Link } from 'react-router-dom'
 import style from './navigation.module.css'
 import pizza from '../../../../../../assets/images/pizza.png'
 import { NavLinksWrapper } from './NavLinks/NavLinksWrapper';
-
-interface INavBarStyle {
-  NavBarContainer: string
-  NavBar: string
-  NavIcon: string
-  NavLinksHolder: string
-}
-
-const { NavBarContainer, NavBar, NavIcon, NavLinksHolder }: INavBarStyle = style
+import { Container } from 'react-bootstrap';
 
 export const Navigation: React.FC = (): JSX.Element => {
   return (
-    <div className={ `${NavBar}` }>
-      <div className={ `container ${NavBarContainer}` }>
-        <div className={ NavIcon }>
+    <div className={style.NavBar}>
+      <Container className={style.NavBarContainer}>
+        <div className={style.NavIcon}>
           <Link to="/">
-            <img src={ pizza } alt="Pizza Hub"/>
+            <img src={pizza} alt="Pizza Hub"/>
           </Link>
         </div>
-        <div className={ `ms-auto my-auto ${NavLinksHolder}` }>
+        <div className={`ms-auto my-auto ${style.NavLinksHolder}`}>
           <NavLinksWrapper/>
         </div>
-      </div>
+      </Container>
     </div>
   )
 }

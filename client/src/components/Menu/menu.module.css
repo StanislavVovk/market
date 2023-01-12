@@ -1,0 +1,8 @@
+.PriceText {
+  width: max-content;
+  width: -moz-max-content;
+}
+
+.MenuContainer {
+  min-height: 100vh;
+}
