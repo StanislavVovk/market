@@ -3,20 +3,7 @@ import style from './order.button.module.css'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/hooks';
 import { cartSlice } from '../../../store/cart/reducer';
 import { IDishCardItem } from '../DishCard/DishCard';
-import { ICartItem } from '../../../models/ICartItem';
-
-interface IQuantityControllerStyle {
-  buttonStyle: string
-  buttonWrapper: string
-  itemText: string
-}
-
-const {
-  buttonStyle,
-  buttonWrapper,
-  itemText
-}: IQuantityControllerStyle = style;
-
+import { ICartItem } from '../../../common/models/ICartItem';
 export const QuantityController: FC<IDishCardItem> = ({ item }): JSX.Element => {
   const dispatch = useAppDispatch();
   const { cart, itemMap } = useAppSelector(state => state.cartReducer);
@@ -32,16 +19,16 @@ export const QuantityController: FC<IDishCardItem> = ({ item }): JSX.Element => 
   }
 
   return (
-    <div className={`ms-auto my-auto ${buttonWrapper}`}>
-      <button className={`${buttonStyle}`} onClick={() => dispatch(decreaseItem(newItem))}>
+    <div className={`ms-auto my-auto ${style.buttonWrapper}`}>
+      <button className={`${style.buttonStyle}`} onClick={() => dispatch(decreaseItem(newItem))}>
         {itemQuantity === 1
           ? <i className="fa fa-trash" aria-hidden="true"></i>
           : <i className="fa fa-minus" aria-hidden="true"></i>}
       </button>
-      <span className={`my-auto mx-1 font-weight-light ${itemText}`}>
+      <span className={`my-auto mx-1 font-weight-light ${style.itemText}`}>
         <strong>{`${itemQuantity}×`}</strong>
       </span>
-      <button className={`${buttonStyle}`} onClick={() => dispatch(addItem(newItem))}>
+      <button className={`${style.buttonStyle}`} onClick={() => dispatch(addItem(newItem))}>
         <i className="fa fa-plus" aria-hidden="true"></i>
       </button>
     </div>

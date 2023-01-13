@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ICartItem, ICartRemover } from '../../models/ICartItem';
+import { ICartItem, ShortCartItem } from '../../common/models/ICartItem';
 
 interface ICartInitialState {
   cart: ICartItem[]
@@ -52,7 +52,7 @@ export const cartSlice = createSlice({
       state.totalPrice -= payload.price
       state.totalEquality--
     },
-    removeItem: (state, { payload }: PayloadAction<ICartRemover>) => {
+    removeItem: (state, { payload }: PayloadAction<ShortCartItem>) => {
       // todo recreate as function
       const item = state.cart[state.itemMap[payload.id]]
       state.totalPrice -= item.quantity * item.price
