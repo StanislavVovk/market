@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import style from './cart.module.css'
-import { useAppSelector } from '../../../../common/hooks/hooks';
+import { useAppSelector } from '../../../../common/common';
 import { FullCart, VoidCart } from './components/common'
 
 export const Cart: FC = (): JSX.Element => {

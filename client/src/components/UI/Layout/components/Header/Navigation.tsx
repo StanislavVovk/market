@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import style from './navigation.module.css'
-import pizza from '../../../../../../assets/images/pizza.png'
-import { NavLinksWrapper } from './NavLinks/NavLinksWrapper';
+import pizza from '../../../../../assets/images/pizza.png'
+import { NavLinksWrapper } from '../../../NavLinksWrapper/NavLinksWrapper';
 import { Container } from 'react-bootstrap';
 
 export const Navigation: React.FC = (): JSX.Element => {

@@ -50,24 +50,22 @@
 }
 
 .SubmitButton {
-  position: relative;
-  text-align: center;
-  padding-left: 16px;
-  padding-right: 16px;
   height: 48px;
-  border-radius: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 40px;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 600;
+  border: 0;
   background-color: var(--purple);
   color: var(--bs-white);
   box-shadow: 0 3px 5px 0 #0000001a;
-  border: none;
   width: 100%;
   max-width: 340px;
   margin-top: 12px;
+}
+
+.SubmitButton:disabled {
+  cursor: not-allowed;
+  background-color: rgba(114, 76, 249, 0.68);
 }
 
 .Suggestion {
@@ -76,7 +74,6 @@
 }
 
 .SuggestionButton {
-  position: relative;
   text-align: center;
   padding-left: 12px;
   padding-right: 12px;
@@ -87,9 +84,5 @@
   border: 0;
   background-color: white;
   text-decoration-line: underline;
-  color: black;
-}
-.SuggestionButton:hover {
-  background-color: unset;
   color: black;
 }

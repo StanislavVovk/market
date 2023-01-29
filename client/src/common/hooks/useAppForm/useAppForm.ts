@@ -1,6 +1,6 @@
-import { Control, FieldErrors, useForm, UseFormHandleSubmit, UseFormWatch, ValidationMode } from 'react-hook-form';
+import { useForm, ValidationMode } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
-import { UseFormMode } from '../../enums/userMode.enum';
+import { UseFormMode } from '../../enums/user/userMode.enum';
 import { Schema } from 'joi';
 
 interface IUseAppForm {
@@ -9,20 +9,14 @@ interface IUseAppForm {
   mode?: keyof ValidationMode
 }
 
-interface UseAppFormReturn {
-  control: Control
-  errors: FieldErrors
-  watch: UseFormWatch<any>
-  reset: Partial<any>
-  handleSubmit: UseFormHandleSubmit<any>
-}
-export const useAppForm = ({ validationSchema, defaultValues, mode }: IUseAppForm): UseAppFormReturn => {
+export const useAppForm = ({ validationSchema, defaultValues, mode }: IUseAppForm) => {
   const {
     control,
-    formState: { errors },
+    formState: { errors, isValid, isDirty },
     reset,
     watch,
-    handleSubmit
+    handleSubmit,
+    setError
   } = useForm({
     defaultValues,
     resolver: validationSchema ? joiResolver(validationSchema) : undefined,
@@ -31,9 +25,12 @@ export const useAppForm = ({ validationSchema, defaultValues, mode }: IUseAppFor
 
   return {
     control,
+    isValid,
+    isDirty,
     errors,
     reset,
     watch,
-    handleSubmit
+    handleSubmit,
+    setError
   };
 };

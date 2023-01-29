@@ -3,9 +3,9 @@ import { QuantityController } from '../common';
 import style from './cartItem.module.css'
 import { IDishCardItem } from '../DishCard/DishCard';
 import { cartSlice } from '../../../store/cart/reducer';
-import { useAppDispatch } from '../../../common/hooks/hooks';
-import { ShortCartItem } from '../../../common/models/ICartItem';
+import { useAppDispatch } from '../../../common/common';
 import { Col, Row } from 'react-bootstrap';
+import { ShortCartItem } from '../../../common/models/CartModel/ICartItem';
 
 export const CartItem: FC<IDishCardItem> = ({ item }): JSX.Element => {
   const { id, name, description, price, quantity } = item

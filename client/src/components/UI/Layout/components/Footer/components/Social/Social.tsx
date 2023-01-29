@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { FooterHeaderEnum } from '../../enums/footer.enum';
+import { FooterHeaderEnum } from '../../../../../../../common/common';
 import style from '../../footer.module.css';
 
 export const Social: FC = (): JSX.Element => {

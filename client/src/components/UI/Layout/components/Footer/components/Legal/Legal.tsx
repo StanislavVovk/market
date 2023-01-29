@@ -1,8 +1,7 @@
 import React, { FC } from 'react'
 import style from '../../footer.module.css'
-import { API_ENUM } from '../../../../../../../common/enums/api.enum';
+import { API_ENUM, FooterHeaderEnum } from '../../../../../../../common/common';
 import { Link } from 'react-router-dom';
-import { FooterHeaderEnum } from '../../enums/footer.enum';
 
 export const Legal: FC = (): JSX.Element => {
   return (

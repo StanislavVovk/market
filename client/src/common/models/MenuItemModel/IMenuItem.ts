@@ -1,4 +1,4 @@
-import { ICartItem } from './ICartItem';
+import { ICartItem } from '../CartModel/ICartItem';
 
 export interface IMenuItem {
   cartItem: ICartItem

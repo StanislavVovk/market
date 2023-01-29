@@ -1,4 +1,4 @@
 import { FooterElement } from './Footer/FooterElement';
-import { Navigation } from './Header/Navbar/Navigation';
+import { Navigation } from './Header/Navigation';
 
 export { FooterElement, Navigation }

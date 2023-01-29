@@ -4,7 +4,7 @@ import style from './modal.module.css'
 
 interface IModalComponentProps {
   show: boolean
-  onHide: any
+  onHide: () => void
   children: React.ReactNode
 }
 
