@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ICartItem, ShortCartItem } from '../../common/models/ICartItem';
+import { ICartItem, ShortCartItem } from '../../common/models/CartModel/ICartItem';
 
 interface ICartInitialState {
   cart: ICartItem[]
@@ -46,7 +46,7 @@ export const cartSlice = createSlice({
         const index = state.itemMap[payload.id]
         delete state.itemMap[payload.id];
         for (let i = index; i < Object.keys(state.itemMap).length; i++) {
-          state.itemMap[state.cart[i].id] -= 1
+          state.itemMap[state.cart[i].id]--
         }
       }
       state.totalPrice -= payload.price
@@ -61,7 +61,7 @@ export const cartSlice = createSlice({
       const index = state.itemMap[payload.id]
       delete state.itemMap[payload.id]
       for (let i = index; i < Object.keys(state.itemMap).length; i++) {
-        state.itemMap[state.cart[i].id] -= 1
+        state.itemMap[state.cart[i].id]--
       }
     }
   }

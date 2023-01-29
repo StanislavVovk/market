@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import style from './homepage.module.css'
-import { API_ENUM } from '../../common/enums/api.enum';
+import { API_ENUM } from '../../common/common';
 import { Container } from 'react-bootstrap';
 import image from '../../assets/images/homepage_bg.jpg'
 

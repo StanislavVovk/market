@@ -1,4 +1,4 @@
-.NavLinkStyle {
+.NavLinkDefault {
   color: #724cf9;
   margin: 0 8px;
   font-weight: 700;
@@ -7,11 +7,11 @@
   width: max-content;
 }
 
-.NavLinkStyle:hover {
+.NavLinkDefault:hover {
   color: #724cf9;
 }
 
-.NavLinkStyle::after {
+.NavLinkDefault::after {
   content: "";
   background-color: #724cf9;
   height: 2px;
@@ -23,7 +23,7 @@
   transition: 0.2s;
 }
 
-.NavLinkStyle:hover::after {
+.NavLinkDefault:hover::after {
   width: 100%;
 }
 

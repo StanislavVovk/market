@@ -1,13 +1,12 @@
 import React, { FC } from 'react';
 import style from '../cart.module.css';
-import { useAppDispatch, useAppSelector } from '../../../../../common/hooks/hooks';
+import { useAppDispatch, useAppSelector, API_ENUM } from '../../../../../common/common';
 import { cartSlice } from '../../../../../store/cart/reducer';
 import { CartItem } from '../../../../UI/common';
-import { ICartItem } from '../../../../../common/models/ICartItem';
 import { Link } from 'react-router-dom';
-import { API_ENUM } from '../../../../../common/enums/api.enum';
+import { ICartItem } from '../../../../../common/models/CartModel/ICartItem';
 
-const FullCart: FC = (): JSX.Element => {
+export const FullCart: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { cart, totalPrice, totalEquality } = useAppSelector(state => state.cartReducer)
   const { clearCart } = cartSlice.actions
@@ -31,5 +30,3 @@ const FullCart: FC = (): JSX.Element => {
     </div>
   );
 };
-
-export default FullCart;

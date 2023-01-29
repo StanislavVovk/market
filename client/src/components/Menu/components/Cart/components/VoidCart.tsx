@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import style from '../cart.module.css';
 
-const VoidCart: FC = (): JSX.Element => {
+export const VoidCart: FC = (): JSX.Element => {
   return (
     <div className={`mt-4 ${style.Body}`}>
       <h1 className={'my-2 mx-2'}>Cart</h1>
@@ -14,5 +14,3 @@ const VoidCart: FC = (): JSX.Element => {
     </div>
   );
 };
-
-export default VoidCart;

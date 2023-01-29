@@ -1,13 +1,26 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import cartReducer from './cart/reducer';
+import authReducer from './auth/authSlice'
+import { Auth } from '../services/services';
 
 const rootReducer = combineReducers({
-  cartReducer
+  cartReducer,
+  authReducer
 });
 
 export const setupStore = () => {
   return configureStore({
-    reducer: rootReducer
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+      serializableCheck: false,
+      thunk: {
+        extraArgument: {
+          services: {
+            Auth
+          }
+        }
+      }
+    })
   })
 };
 

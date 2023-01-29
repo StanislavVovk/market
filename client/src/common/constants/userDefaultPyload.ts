@@ -1,4 +1,4 @@
-import { UserPayloadKey } from '../enums/userPayoadKey';
+import { UserPayloadKey } from '../enums/user/userPayoadKey.enum';
 
 export const DEFAULT_LOGIN_PAYLOAD = {
   [UserPayloadKey.EMAIL]: '',

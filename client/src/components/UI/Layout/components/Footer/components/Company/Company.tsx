@@ -1,8 +1,7 @@
 import React, { FC } from 'react'
 import style from '../../footer.module.css'
 import { Link } from 'react-router-dom';
-import { API_ENUM } from '../../../../../../../common/enums/api.enum';
-import { FooterHeaderEnum, FooterLinkEnum } from '../../enums/footer.enum';
+import { API_ENUM, FooterHeaderEnum, FooterLinkEnum } from '../../../../../../../common/common';
 
 export const Company: FC = (): JSX.Element => {
   // TODO create link component
