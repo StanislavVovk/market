@@ -1,10 +1,10 @@
-import { User } from '@firebase/auth'
+import { User, AuthProvider } from '@firebase/auth'
 
 import { FirebaseError } from '@firebase/util'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { ActionTypes } from '../../common/constants/common'
-import { UserAuthData, UsernameData } from '../../common/models/UserModel/IUserCredential'
-import { AuthService } from '../../services/auth/auth.service'
+import { ActionTypes } from 'common/constants/common'
+import { UserAuthData, UsernameData } from 'common/models/UserModel/IUserCredential'
+import { AuthService } from 'services/auth/auth.service'
 
 const loginUser = createAsyncThunk<User, UserAuthData, { rejectWithValue: FirebaseError, extra: { services: { Auth: AuthService } } }>(
   ActionTypes.LOG_IN,
@@ -49,6 +49,20 @@ const registerUser = createAsyncThunk<User, UserAuthData, { rejectWithValue: Fir
     }
   }
 )
+const signWithProvider = createAsyncThunk<User, AuthProvider, { rejectWithValue: FirebaseError, extra: { services: { Auth: AuthService } } }>(
+  ActionTypes.SIGN_WITH_PROVIDER,
+  async (provider, {
+    rejectWithValue,
+    extra: { services: { Auth } }
+  }) => {
+    try {
+      const user = await Auth.signWithProvider(provider)
+      return user
+    } catch (err) {
+      return rejectWithValue(err)
+    }
+  }
+)
 const setUsername = createAsyncThunk<{}, UsernameData, { rejectWithValue: FirebaseError, extra: { services: { Auth: AuthService } } }>(
   ActionTypes.CHANGE_USERNAME,
   async (userData, {
@@ -79,4 +93,4 @@ const logoutUser = createAsyncThunk<{}, {}, { rejectWithValue: FirebaseError, ex
   }
 )
 
-export { loginUser, logoutUser, registerUser, setUsername }
+export { loginUser, logoutUser, registerUser, setUsername, signWithProvider }
