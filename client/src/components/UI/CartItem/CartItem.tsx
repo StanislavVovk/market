@@ -1,14 +1,20 @@
-import React, { FC } from 'react';
-import { QuantityController } from '../common';
+import React, { FC } from 'react'
+import { Col, Row } from 'react-bootstrap'
+import { useAppDispatch } from '../../../common/common'
+import { ShortCartItem } from '../../../common/models/CartModel/ICartItem'
+import { cartSlice } from '../../../store/cart/cartSlice'
+import { QuantityController } from '../common'
+import { IDishCardItem } from '../DishCard/DishCard'
 import style from './cartItem.module.css'
-import { IDishCardItem } from '../DishCard/DishCard';
-import { cartSlice } from '../../../store/cart/reducer';
-import { useAppDispatch } from '../../../common/common';
-import { Col, Row } from 'react-bootstrap';
-import { ShortCartItem } from '../../../common/models/CartModel/ICartItem';
 
 export const CartItem: FC<IDishCardItem> = ({ item }): JSX.Element => {
-  const { id, name, description, price, quantity } = item
+  const {
+    id,
+    name,
+    description,
+    price,
+    quantity
+  } = item
   const dispatch = useAppDispatch()
   const removeItem = cartSlice.actions.removeItem
   const newItem: ShortCartItem = {
@@ -40,5 +46,5 @@ export const CartItem: FC<IDishCardItem> = ({ item }): JSX.Element => {
         </button>
       </Col>
     </Row>
-  );
-};
+  )
+}

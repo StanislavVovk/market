@@ -1,36 +1,21 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
+import { NavLink } from 'react-router-dom'
+import { useAppDispatch, useAppSelector, API_ENUM } from 'common/common'
+import { modalActionCreator, profileActionCreator } from 'store/actions'
+import { Sign } from '../common'
 import style from './navLinks.module.css'
-import { Sign } from '../Sign/Sign';
-import { NavLink } from 'react-router-dom';
-import { API_ENUM, useAppDispatch, useAppSelector } from '../../../common/common';
-import { profileActionCreator } from 'store/actions';
 
-const checkActivity = (ActivityStatus: boolean): string => {
-  return ActivityStatus ? style.NavLinkDefault.concat(' ', style.NavLinkActive) : style.NavLinkDefault;
-}
+const checkActivity = (ActivityStatus: boolean): string => ActivityStatus ? style.NavLinkDefault.concat(' ', style.NavLinkActive) : style.NavLinkDefault
 
 export const NavLinksWrapper: FC = (): JSX.Element => {
-  const [modalVisibilityState, setModalVisibility] = useState(false)
-  const [loginState, changeLoginState] = useState(false)
   const dispatch = useAppDispatch()
   const user = useAppSelector((state) => state.authReducer.user)
-  const handleLoginClick = () => {
-    changeLoginState(true)
-    setModalVisibility(true)
-  }
-  const handleRegistrationClick = () => {
-    changeLoginState(false)
-    setModalVisibility(true)
-  }
+
+  const handleLoginClick = () => dispatch(modalActionCreator.showLogin())
+  const handleRegistrationClick = () => dispatch(modalActionCreator.showRegistration())
   const onLogout = () => dispatch(profileActionCreator.logoutUser({}))
-  const handleLogoutClick = () => {
-    onLogout()
-      .catch(e => {
-        console.log(e)
-      })
-  }
-  const handleModalChange = () => {
-    changeLoginState(!loginState)
+  const handleLogoutClick = async () => {
+    await onLogout()
   }
   return (
     <div className="ms-auto my-auto d-flex">
@@ -40,7 +25,7 @@ export const NavLinksWrapper: FC = (): JSX.Element => {
       <NavLink to={API_ENUM.MENU} className={({ isActive }) => checkActivity(isActive)}>
         Menu
       </NavLink>
-      {!user
+      {Object.keys(user).length === 0
         ? <>
           <button
             className={style.AuthButton}
@@ -56,18 +41,12 @@ export const NavLinksWrapper: FC = (): JSX.Element => {
         : <>
           <button
             className={style.AuthButton}
-            onClick={() => handleLogoutClick()}>
+            onClick={async () => await handleLogoutClick()}>
             Logout
           </button>
         </>
       }
-
-      <Sign
-        login={loginState}
-        showModal={modalVisibilityState}
-        onHideModal={() => setModalVisibility(false)}
-        onModalChange={() => handleModalChange()}
-      />
+      <Sign/>
     </div>
   )
 }

@@ -1,14 +1,20 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
+import { useAppDispatch, useAppSelector } from '../../../common/common'
+import { ICartItem } from '../../../common/models/CartModel/ICartItem'
+import { cartSlice } from '../../../store/cart/cartSlice'
+import { IDishCardItem } from '../DishCard/DishCard'
 import style from './order.button.module.css'
-import { useAppDispatch, useAppSelector } from '../../../common/common';
-import { cartSlice } from '../../../store/cart/reducer';
-import { IDishCardItem } from '../DishCard/DishCard';
-import { ICartItem } from '../../../common/models/CartModel/ICartItem';
 
 export const QuantityController: FC<IDishCardItem> = ({ item }): JSX.Element => {
-  const dispatch = useAppDispatch();
-  const { cart, itemMap } = useAppSelector(state => state.cartReducer);
-  const { addItem, decreaseItem } = cartSlice.actions;
+  const dispatch = useAppDispatch()
+  const {
+    cart,
+    itemMap
+  } = useAppSelector(state => state.cartReducer)
+  const {
+    addItem,
+    decreaseItem
+  } = cartSlice.actions
   const itemQuantity = item.id in itemMap ? cart[itemMap[item.id]].quantity : 0
   const newItem: ICartItem = {
     id: item.id,

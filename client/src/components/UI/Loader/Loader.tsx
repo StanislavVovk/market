@@ -1,8 +1,6 @@
-import React from 'react';
 import style from './styles.module.css'
+import React, { FC } from 'react'
 
-export const Loader: React.FC = (): JSX.Element => {
-  return (
+export const Loader: FC = (): JSX.Element => (
     <div className={style.Loader}/>
-  )
-}
+)

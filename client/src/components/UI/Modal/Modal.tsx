@@ -1,18 +1,21 @@
-import React, { FC } from 'react';
-import { Modal } from 'react-bootstrap';
+import { modalActionCreator } from '../../../store/actions'
 import style from './modal.module.css'
+import React, { FC } from 'react'
+import { Modal } from 'react-bootstrap';
+import { useAppSelector, useAppDispatch } from 'common/common'
 
 interface IModalComponentProps {
-  show: boolean
-  onHide: () => void
   children: React.ReactNode
 }
 
-export const ModalComponent: FC<IModalComponentProps> = ({ show, onHide, children }): JSX.Element => {
+export const ModalComponent: FC<IModalComponentProps> = ({ children }): JSX.Element => {
+  const { modalVisibility } = useAppSelector(state => state.modalReducer)
+  const dispatch = useAppDispatch()
+  const handleModalClose = () => dispatch(modalActionCreator.hideModal())
   return (
     <Modal
-      show={show}
-      onHide={onHide}
+      show={modalVisibility}
+      onHide={handleModalClose}
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >

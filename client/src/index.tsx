@@ -1,12 +1,12 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css'
+import { Provider } from 'react-redux'
 import { App } from './components/App'
+import './index.css'
+import { setupStore } from './store/store'
 
-import { Provider } from 'react-redux';
-import { setupStore } from './store/store';
-import 'bootstrap/dist/css/bootstrap.min.css'
-const store = setupStore();
+const store = setupStore()
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <Provider store={store}>
     <React.StrictMode>
-        <App/>
+      <App/>
     </React.StrictMode>
   </Provider>
 )
