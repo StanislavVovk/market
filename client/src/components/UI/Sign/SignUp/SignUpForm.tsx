@@ -6,13 +6,14 @@ import {
   useAppSelector,
   UserPayloadKey
 } from 'common/common'
+import { IUserAuthData } from 'common/models/UserModel/IUserCredential'
 import React, { FC } from 'react'
 import { Form } from 'react-bootstrap'
 import { SubmitHandler } from 'react-hook-form'
-import { IUserAuthData } from 'common/models/UserModel/IUserCredential'
 import { modalActionCreator, profileActionCreator } from 'store/actions'
 import { authSlice } from 'store/auth/authSlice'
 import { InputComponent } from '../../Input/InputComponent'
+import { GoogleSign } from '../GoogleSign/GoogleOA'
 import style from '../sign.module.css'
 
 export const SignUpForm: FC = (): JSX.Element => {
@@ -61,6 +62,7 @@ export const SignUpForm: FC = (): JSX.Element => {
       </h2>
       <div className={style.SocialButtons}>
       <span>
+        <GoogleSign/>
       </span>
         <div className={`${style.Divider}`}>
           or

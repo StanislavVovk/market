@@ -2,9 +2,11 @@ import {
   Auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile,
-  User
+  User,
+  AuthProvider
 } from '@firebase/auth'
 import { FirebaseError } from '@firebase/util'
 import { authErrorHandler } from '../../common/errors/authErrors'
@@ -33,6 +35,15 @@ export class AuthService {
     password
   }: Record<keyof UserAuthData, string>) {
     return await createUserWithEmailAndPassword(this._auth, email, password)
+      .then((userCredential) => userCredential.user)
+      .catch((error: FirebaseError) => {
+        throw authErrorHandler(error)
+      })
+  }
+
+  async signWithProvider (
+    provider: AuthProvider) {
+    return await signInWithPopup(this._auth, provider)
       .then((userCredential) => userCredential.user)
       .catch((error: FirebaseError) => {
         throw authErrorHandler(error)

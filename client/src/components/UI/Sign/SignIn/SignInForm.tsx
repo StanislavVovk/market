@@ -14,6 +14,7 @@ import { Form } from 'react-bootstrap'
 import { SubmitHandler } from 'react-hook-form'
 import { modalActionCreator, profileActionCreator } from 'store/actions'
 import { authSlice } from 'store/auth/authSlice'
+import { GoogleSign } from '../GoogleSign/GoogleOA'
 import style from '../sign.module.css'
 
 export const SignInForm: FC = (): JSX.Element => {
@@ -53,9 +54,7 @@ export const SignInForm: FC = (): JSX.Element => {
         </strong>
       </h2>
       <div className={style.SocialButtons}>
-      <span>
-
-       </span>
+        <GoogleSign/>
         <div className={`${style.Divider}`}>
           or
         </div>
