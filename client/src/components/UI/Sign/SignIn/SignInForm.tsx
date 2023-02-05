@@ -1,42 +1,49 @@
-import React, { FC, useState } from 'react';
 import {
   DEFAULT_LOGIN_PAYLOAD,
   LoginValidationSchema,
+  UserPayloadKey,
   useAppDispatch,
   useAppForm,
-  UserPayloadKey
-} from '../../../../common/common';
-import style from '../sign.module.css';
-import { InputComponent } from '../../Input/InputComponent';
-import { Form } from 'react-bootstrap';
-import { SubmitHandler } from 'react-hook-form';
-import { IUserLoginData } from '../../../../common/models/UserModel/IUserCredential';
-import { profileActionCreator } from '../../../../store/actions'
-import { FirebaseError } from '@firebase/util';
+  useAppSelector
+} from 'common/common'
+import { UserAuthData } from 'common/models/UserModel/IUserCredential'
 
-export interface SignFormProps {
-  onFormChange: () => void
+import { InputComponent } from 'components/UI/Input/InputComponent'
+import React, { FC } from 'react'
+import { Form } from 'react-bootstrap'
+import { SubmitHandler } from 'react-hook-form'
+import { modalActionCreator, profileActionCreator } from 'store/actions'
+import { authSlice } from 'store/auth/authSlice'
+import style from '../sign.module.css'
 
-}
-
-export const SignInForm: FC<SignFormProps> = ({ onFormChange }): JSX.Element => {
-  const { control, errors, handleSubmit, isValid } = useAppForm({
+export const SignInForm: FC = (): JSX.Element => {
+  const {
+    control,
+    errors,
+    handleSubmit,
+    isValid
+  } = useAppForm({
     mode: 'all',
     defaultValues: DEFAULT_LOGIN_PAYLOAD,
     validationSchema: LoginValidationSchema
   })
-  const [errorMessage, setErrorMessage] = useState<FirebaseError>()
   const dispatch = useAppDispatch()
-  const onLogin = (loginData: Record<keyof IUserLoginData, string>) => dispatch(profileActionCreator.loginUser(loginData))
+  const errorMessage = useAppSelector(state => state.authReducer.error)
+  const loginStatus = useAppSelector(state => state.modalReducer.loginVisibility)
+  const handleModalChange = () => {
+    void dispatch(authSlice.actions.clearError())
+    return dispatch(modalActionCreator.handleModal(loginStatus))
+  }
+  const onLogin = (loginData: Record<keyof UserAuthData, string>) => dispatch(profileActionCreator.loginUser(loginData))
 
-  const handleLSignIn: SubmitHandler<Record<keyof IUserLoginData, string>> = async (values, event) => {
+  const handleLSignIn: SubmitHandler<Record<keyof UserAuthData, string>> = async (values, event) => {
     event?.preventDefault()
     await onLogin(values)
       .unwrap()
-      .catch((error: FirebaseError) => {
-        setErrorMessage(error)
+      .then(() => {
+        dispatch(modalActionCreator.hideModal())
       })
-  };
+  }
 
   return (
     <>
@@ -47,8 +54,8 @@ export const SignInForm: FC<SignFormProps> = ({ onFormChange }): JSX.Element => 
       </h2>
       <div className={style.SocialButtons}>
       <span>
-        <button/>
-      </span>
+
+       </span>
         <div className={`${style.Divider}`}>
           or
         </div>
@@ -65,7 +72,6 @@ export const SignInForm: FC<SignFormProps> = ({ onFormChange }): JSX.Element => 
           control={control}
           errors={errors}
           labelText="Enter email"
-          signError={errorMessage && Object.keys(errorMessage).length !== 0}
         />
         <InputComponent
           name={UserPayloadKey.PASSWORD}
@@ -74,9 +80,10 @@ export const SignInForm: FC<SignFormProps> = ({ onFormChange }): JSX.Element => 
           control={control}
           errors={errors}
           labelText="Enter password"
-          signError={errorMessage && Object.keys(errorMessage).length !== 0}
         />
-        {errorMessage?.message ? <div> {errorMessage.message}</div> : null}
+        {errorMessage
+          ? <div>{errorMessage}</div>
+          : null}
         <div className="d-flex justify-content-center">
           <button
             disabled={!isValid}
@@ -92,11 +99,11 @@ export const SignInForm: FC<SignFormProps> = ({ onFormChange }): JSX.Element => 
         New to PizzaHub?
         <button
           className={`ms-1 ${style.SuggestionButton}`}
-          onClick={() => onFormChange()}
+          onClick={() => handleModalChange()}
         >
           Sign up
         </button>
       </div>
     </>
   )
-};
+}

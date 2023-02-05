@@ -1,9 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
+import { Col, Container, Row } from 'react-bootstrap'
+import { PageHeader, DishCard } from '../UI/common'
+import { Cart } from './components/common'
 import style from './menu.module.css'
-import { DishCard } from '../UI/DishCard/DishCard';
-import { Cart } from './components/common';
-import { PageHeader } from '../UI/common';
-import { Col, Container, Row } from 'react-bootstrap';
 
 export interface IDishCardProps {
   description: string

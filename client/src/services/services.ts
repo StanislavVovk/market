@@ -1,5 +1,5 @@
-import { AuthService } from './auth/auth.service';
-import { auth } from '../firebase/firebase';
+import { auth } from '../firebase/firebase'
+import { AuthService } from './auth/auth.service'
 
 const Auth = new AuthService(auth)
 

@@ -1,14 +1,18 @@
-import React, { FC } from 'react';
-import style from '../cart.module.css';
-import { useAppDispatch, useAppSelector, API_ENUM } from '../../../../../common/common';
-import { cartSlice } from '../../../../../store/cart/reducer';
-import { CartItem } from '../../../../UI/common';
-import { Link } from 'react-router-dom';
-import { ICartItem } from '../../../../../common/models/CartModel/ICartItem';
+import { useAppDispatch, useAppSelector, API_ENUM } from 'common/common'
+import { ICartItem } from 'common/models/CartModel/ICartItem'
+import { CartItem } from 'components/UI/common'
+import { cartSlice } from 'store/cart/cartSlice'
+import React, { FC } from 'react'
+import { Link } from 'react-router-dom'
+import style from '../cart.module.css'
 
 export const FullCart: FC = (): JSX.Element => {
-  const dispatch = useAppDispatch();
-  const { cart, totalPrice, totalEquality } = useAppSelector(state => state.cartReducer)
+  const dispatch = useAppDispatch()
+  const {
+    cart,
+    totalPrice,
+    totalEquality
+  } = useAppSelector(state => state.cartReducer)
   const { clearCart } = cartSlice.actions
   return (
     <div className={`mt-4 ${style.Body}`}>
@@ -28,5 +32,5 @@ export const FullCart: FC = (): JSX.Element => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}

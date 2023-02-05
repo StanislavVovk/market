@@ -1,6 +1,6 @@
-import Joi from 'joi'
-import { UserValidationRule } from './schemaRules/validationRules';
 import { UserValidationMessage } from './schemaErrorMessage/errorMessage';
+import { UserValidationRule } from './schemaRules/validationRules';
+import Joi from 'joi'
 
 export const SignUpValidation = Joi.object(
   {

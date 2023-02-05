@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import { IDishCardProps } from '../../Menu/Menu'
 import style from './dishcard.module.css'
 import { QuantityController } from '../common';
-import { IDishCardProps } from '../../Menu/Menu';
+import React, { FC } from 'react'
 import { Row } from 'react-bootstrap';
 
 export interface IDishCardItem {

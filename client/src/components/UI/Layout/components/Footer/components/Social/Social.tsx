@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
 import { FooterHeaderEnum } from '../../../../../../../common/common';
 import style from '../../footer.module.css';
+import React from 'react';
+import type { FC } from 'react';
 
-export const Social: FC = (): JSX.Element => {
-  return (
+export const Social: FC = (): JSX.Element => (
     <div className="col-lg-4 my-4">
       <h2 className={`text-center ${style.HeaderText}`}>
         {FooterHeaderEnum.SOCIAL}
@@ -31,5 +31,4 @@ export const Social: FC = (): JSX.Element => {
         </a>
       </div>
     </div>
-  );
-};
+);

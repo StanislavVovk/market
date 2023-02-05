@@ -1,8 +1,8 @@
-export interface IUserLoginData {
+export interface IUserAuthData {
   email: string
   password: string
+  username: string
 }
 
-export interface IUserRegistrationData extends IUserLoginData {
-  username?: string
-}
+export type UsernameData = Pick<IUserAuthData, 'username'>
+export type UserAuthData = Omit<IUserAuthData, 'username'>

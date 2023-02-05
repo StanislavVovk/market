@@ -1,7 +1,8 @@
-import { useForm, ValidationMode } from 'react-hook-form';
-import { joiResolver } from '@hookform/resolvers/joi';
 import { UseFormMode } from '../../enums/user/userMode.enum';
-import { Schema } from 'joi';
+import { joiResolver } from '@hookform/resolvers/joi';
+import { useForm } from 'react-hook-form';
+import type { Schema } from 'joi';
+import type { ValidationMode } from 'react-hook-form';
 
 interface IUseAppForm {
   validationSchema?: Schema

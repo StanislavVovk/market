@@ -1,7 +1,8 @@
-import React, { FC, HTMLInputTypeAttribute } from 'react';
-import { Mode, useController } from 'react-hook-form';
-import { ErrorMessage } from '@hookform/error-message';
-import { FloatingLabel, Form } from 'react-bootstrap';
+import { ErrorMessage } from '@hookform/error-message'
+import React, { HTMLInputTypeAttribute, FC } from 'react'
+import { FloatingLabel, Form } from 'react-bootstrap'
+import { useController, Mode } from 'react-hook-form'
+import { useAppSelector } from 'common/common'
 import style from './input.module.css'
 
 interface IInputProps {
@@ -14,7 +15,6 @@ interface IInputProps {
   labelText: string
   className?: string
   mode?: Mode
-  signError?: boolean | string
 }
 
 export const InputComponent: FC<IInputProps> = (
@@ -27,12 +27,17 @@ export const InputComponent: FC<IInputProps> = (
     disabled = false,
     labelText,
     className = 'mb-4',
-    mode = 'all',
-    signError
+    mode = 'all'
   }): JSX.Element => {
-  const { field } = useController({ name, control })
-  const { onChange, value } = field
-
+  const { field } = useController({
+    name,
+    control
+  })
+  const {
+    onChange,
+    value
+  } = field
+  const errorState = useAppSelector(state => state.authReducer.error)
   return (
     <Form.Group className={className.concat(' ', style.Input)}>
       <FloatingLabel label={labelText}>
@@ -40,7 +45,7 @@ export const InputComponent: FC<IInputProps> = (
           onChange={onChange}
           value={value}
           type={type}
-          isInvalid={!!errors[name] || !!signError}
+          isInvalid={!!errors[name] || !!errorState}
           isValid={mode !== 'all' ? !errors[name] && value : undefined}
           disabled={disabled}
           placeholder={placeholder}
@@ -50,5 +55,5 @@ export const InputComponent: FC<IInputProps> = (
         </Form.Control.Feedback>
       </FloatingLabel>
     </Form.Group>
-  );
-};
+  )
+}

@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ICartItem, ShortCartItem } from '../../common/models/CartModel/ICartItem';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { ICartItem, ShortCartItem } from '../../common/models/CartModel/ICartItem'
 
 interface ICartInitialState {
   cart: ICartItem[]
@@ -23,28 +23,26 @@ export const cartSlice = createSlice({
       // probably, there is a bit better method to create this
       // too difficult to refactor this
       if (payload.id in state.itemMap) {
-        state.cart[state.itemMap[payload.id]].quantity++;
+        state.cart[state.itemMap[payload.id]].quantity++
       } else {
-        state.itemMap[payload.id] = state.cart.length;
-        payload.quantity++;
+        state.itemMap[payload.id] = state.cart.length
+        payload.quantity++
         state.cart.push({ ...payload })
       }
       state.totalPrice += payload.price
       state.totalEquality++
     },
-    clearCart: () => {
-      return initialState;
-    },
+    clearCart: () => initialState,
     decreaseItem: (state, { payload }: PayloadAction<ICartItem>) => {
       if (!(payload.id in state.itemMap)) {
         return state
       }
-      state.cart[state.itemMap[payload.id]].quantity--;
+      state.cart[state.itemMap[payload.id]].quantity--
       const deltaQuantity = state.cart[state.itemMap[payload.id]].quantity
       if (deltaQuantity === 0) {
         state.cart = [...state.cart].filter((cartItem) => cartItem.id !== payload.id)
         const index = state.itemMap[payload.id]
-        delete state.itemMap[payload.id];
+        delete state.itemMap[payload.id]
         for (let i = index; i < Object.keys(state.itemMap).length; i++) {
           state.itemMap[state.cart[i].id]--
         }
@@ -67,4 +65,5 @@ export const cartSlice = createSlice({
   }
 })
 
+export const cartActions = cartSlice.actions
 export default cartSlice.reducer

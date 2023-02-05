@@ -1,36 +1,66 @@
-import React, { FC } from 'react';
 import {
   DEFAULT_SIGNUP_PAYLOAD,
   SignUpValidation,
+  useAppDispatch,
   useAppForm,
+  useAppSelector,
   UserPayloadKey
-} from '../../../../common/common';
-import { InputComponent } from '../../Input/InputComponent';
+} from 'common/common'
+import React, { FC } from 'react'
+import { Form } from 'react-bootstrap'
+import { SubmitHandler } from 'react-hook-form'
+import { IUserAuthData } from 'common/models/UserModel/IUserCredential'
+import { modalActionCreator, profileActionCreator } from 'store/actions'
+import { authSlice } from 'store/auth/authSlice'
+import { InputComponent } from '../../Input/InputComponent'
 import style from '../sign.module.css'
-import { SignFormProps } from '../SignIn/SignInForm';
-import { Form } from 'react-bootstrap';
-import { SubmitHandler } from 'react-hook-form';
-import { IUserRegistrationData } from '../../../../common/models/UserModel/IUserCredential';
 
-export const SignUpForm: FC<SignFormProps> = ({ onFormChange }): JSX.Element => {
-  const { control, errors, handleSubmit, isDirty } = useAppForm({
+export const SignUpForm: FC = (): JSX.Element => {
+  const {
+    control,
+    errors,
+    handleSubmit,
+    isDirty
+  } = useAppForm({
     mode: 'all',
     defaultValues: DEFAULT_SIGNUP_PAYLOAD,
     validationSchema: SignUpValidation
   })
-  const handleLSignUp: SubmitHandler<Record<keyof IUserRegistrationData, string>> = async (values, event) => {
+  const dispatch = useAppDispatch()
+  const loginStatus = useAppSelector(state => state.modalReducer.loginVisibility)
+  const handleModalChange = () => {
+    void dispatch(authSlice.actions.clearError())
+    return dispatch(modalActionCreator.handleModal(loginStatus))
+  }
+
+  const onSignUp = (values: Record<keyof IUserAuthData, string>) => {
+    const {
+      username,
+      email,
+      password
+    } = values
+    const regData = dispatch(profileActionCreator.registerUser({
+      email,
+      password
+    }))
+    void dispatch(profileActionCreator.setUsername({ username }))
+    return regData
+  }
+  const handleLSignUp: SubmitHandler<Record<keyof IUserAuthData, string>> = async (values, event) => {
     event?.preventDefault()
-  };
+    await onSignUp(values)
+      .unwrap()
+      .then(() => {
+        dispatch(modalActionCreator.hideModal())
+      })
+  }
   return (
     <>
       <h2 className={`${style.ModalTitle} mb-5`}>
-        <strong>
-          Sign up to PizzaHub
-        </strong>
+        Sign up to PizzaHub
       </h2>
       <div className={style.SocialButtons}>
       <span>
-        <button/>
       </span>
         <div className={`${style.Divider}`}>
           or
@@ -86,7 +116,7 @@ export const SignUpForm: FC<SignFormProps> = ({ onFormChange }): JSX.Element => 
         Got an account already?
         <button
           className={`ms-1 ${style.SuggestionButton}`}
-          onClick={() => onFormChange()}
+          onClick={() => handleModalChange()}
         >
           Log in
         </button>

@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
-import style from './homepage.module.css'
-import { API_ENUM } from '../../common/common';
-import { Container } from 'react-bootstrap';
+import React, { FC } from 'react'
+import { Container } from 'react-bootstrap'
 import image from '../../assets/images/homepage_bg.jpg'
+import { API_ENUM } from '../../common/enums/common'
+import style from './homepage.module.css'
 
 export const Homepage: FC = (): JSX.Element => {
   return (
@@ -16,5 +16,5 @@ export const Homepage: FC = (): JSX.Element => {
         </a>
       </Container>
     </div>
-  );
-};
+  )
+}

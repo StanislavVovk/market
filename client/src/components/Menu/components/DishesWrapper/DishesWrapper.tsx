@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 
-export const DishesWrapper: FC = (): JSX.Element => {
-  return (
+export const DishesWrapper: FC = (): JSX.Element => (
     <></>
-  )
-}
+)

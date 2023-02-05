@@ -1,11 +1,11 @@
-import React, { FC } from 'react'
-import style from '../../footer.module.css'
-import { Link } from 'react-router-dom';
 import { API_ENUM, FooterHeaderEnum, FooterLinkEnum } from '../../../../../../../common/common';
+import style from '../../footer.module.css'
+import React, { FC } from 'react'
+import { Link } from 'react-router-dom';
 
-export const Company: FC = (): JSX.Element => {
+export const Company: FC = (): JSX.Element =>
   // TODO create link component
-  return (
+  (
     <div className={`my-4 ${style.Holder}`}>
       <h2 className={style.HeaderText}>{FooterHeaderEnum.COMPANY}</h2>
       <div className={style.LinkContainer}>
@@ -21,5 +21,5 @@ export const Company: FC = (): JSX.Element => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+;
