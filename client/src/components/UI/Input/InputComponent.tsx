@@ -1,27 +1,28 @@
 import { ErrorMessage } from '@hookform/error-message'
 import React, { HTMLInputTypeAttribute, FC } from 'react'
 import { FloatingLabel, Form } from 'react-bootstrap'
-import { useController, Mode } from 'react-hook-form'
+import { useController, Mode, UseFormSetValue } from 'react-hook-form'
 import { useAppSelector } from 'common/common'
 import style from './input.module.css'
 
-interface IInputProps {
-  name: string
-  control: any
-  type: HTMLInputTypeAttribute
-  errors: { [x: string]: any }
-  disabled?: boolean
-  placeholder?: string
-  labelText: string
+export interface IInputProps {
   className?: string
+  control: any
+  disabled?: boolean
+  errors: { [x: string]: any }
+  labelText: string
   mode?: Mode
+  name: string
+  placeholder?: string
+  type?: HTMLInputTypeAttribute
+  setValue?: UseFormSetValue<Record<string, any>>
 }
-
+// God component?
 export const InputComponent: FC<IInputProps> = (
   {
     name,
     control,
-    type,
+    type = 'text',
     placeholder,
     errors,
     disabled = false,

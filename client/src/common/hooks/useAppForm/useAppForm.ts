@@ -6,7 +6,7 @@ import type { ValidationMode } from 'react-hook-form';
 
 interface IUseAppForm {
   validationSchema?: Schema
-  defaultValues: Record<string, string>
+  defaultValues: Record<string, any>
   mode?: keyof ValidationMode
 }
 
@@ -17,7 +17,8 @@ export const useAppForm = ({ validationSchema, defaultValues, mode }: IUseAppFor
     reset,
     watch,
     handleSubmit,
-    setError
+    setError,
+    setValue
   } = useForm({
     defaultValues,
     resolver: validationSchema ? joiResolver(validationSchema) : undefined,
@@ -32,6 +33,7 @@ export const useAppForm = ({ validationSchema, defaultValues, mode }: IUseAppFor
     reset,
     watch,
     handleSubmit,
-    setError
+    setError,
+    setValue
   };
 };

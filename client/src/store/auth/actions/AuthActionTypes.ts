@@ -1,4 +1,4 @@
-export const ActionTypes: Record<keyof IActionTypes, string> = {
+export const AuthActionTypes: Record<keyof IActionTypes, string> = {
   LOG_IN: 'authAction/login',
   SIGN_UP: 'authAction/register',
   SIGN_WITH_PROVIDER: 'authAction/signWithProvider',

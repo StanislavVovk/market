@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { useAppSelector } from '../../../common/common'
+import { useAppSelector } from 'common/common'
 import { ModalComponent } from '../common'
 import { SignInForm } from './SignIn/SignInForm'
 import { SignUpForm } from './SignUp/SignUpForm'

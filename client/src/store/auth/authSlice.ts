@@ -1,25 +1,26 @@
-import { User } from '@firebase/auth'
 import { FirebaseError } from '@firebase/util'
 import { createSlice, isAnyOf, PayloadAction } from '@reduxjs/toolkit'
-import { ActionTypes } from '../../common/constants/common'
-import { loginUser, logoutUser, registerUser } from './actions'
+import { UserModel } from 'common/models/UserModel/AuthUserModel'
+import { loginUser, logoutUser, registerUser } from './actions/actions'
+import { AuthActionTypes } from './actions/AuthActionTypes'
 
 interface IAuthInitialState {
-  user: User | {}
-  isLoading?: boolean
+  user: UserModel | undefined
+  isLoading: boolean
   error: string | null
 }
 
 const initialState: IAuthInitialState = {
-  user: {},
-  error: null
+  user: undefined,
+  error: null,
+  isLoading: false
 }
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    [ActionTypes.CHECK_USER]: (state, { payload }: PayloadAction<User>) => {
+    [AuthActionTypes.CHECK_USER]: (state, { payload }: PayloadAction<UserModel>) => {
       state.user = payload
     },
     clearError: state => {
@@ -28,15 +29,29 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(logoutUser.fulfilled, state => {
+        state.user = undefined
+        state.error = null
+        state.isLoading = false
+      })
       .addMatcher(
         isAnyOf(
           loginUser.fulfilled,
-          registerUser.fulfilled,
-          logoutUser.fulfilled
+          registerUser.fulfilled
         ),
         (state, action) => {
           state.user = action.payload
           state.error = null
+          state.isLoading = false
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          loginUser.pending,
+          registerUser.pending,
+          logoutUser.pending
+        ), (state) => {
+          state.isLoading = true
         }
       )
       .addMatcher(
@@ -46,10 +61,11 @@ export const authSlice = createSlice({
           logoutUser.rejected
         ),
         (state, { payload }) => {
-          state.user = {}
+          state.user = undefined
           // how it really works
           const errorWrapper = payload as FirebaseError
           state.error = errorWrapper.message
+          state.isLoading = false
         }
       )
   }

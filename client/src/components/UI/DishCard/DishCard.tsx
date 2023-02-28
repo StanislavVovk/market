@@ -1,4 +1,4 @@
-import { IDishCardProps } from '../../Menu/Menu'
+import { IDishCardProps } from 'components/Menu/Menu'
 import style from './dishcard.module.css'
 import { QuantityController } from '../common';
 import React, { FC } from 'react'

@@ -27,7 +27,7 @@ export const FullCart: FC = (): JSX.Element => {
       </div>
       <div className={`${style.Separator}`}></div>
       <div className={`${style.CartUtils}`}>
-        <Link to={API_ENUM.CART}>
+        <Link to={API_ENUM.ORDER}>
           <button className={`${style.CartNavigationButton}`}> Order {totalEquality} for ${totalPrice}</button>
         </Link>
       </div>

@@ -6,7 +6,7 @@ import {
   useAppForm,
   useAppSelector
 } from 'common/common'
-import { UserAuthData } from 'common/models/UserModel/IUserCredential'
+import { UserAuthData } from 'common/models/UserAuth/IUserCredential'
 
 import { InputComponent } from 'components/UI/Input/InputComponent'
 import React, { FC } from 'react'
