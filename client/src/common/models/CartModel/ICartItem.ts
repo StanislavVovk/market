@@ -8,3 +8,10 @@ export interface ICartItem {
 }
 
 export type ShortCartItem = Pick<ICartItem, 'id' | 'quantity'>
+
+export interface CartModel {
+  cart: ICartItem[]
+  itemMap: Record<number, number>
+  totalEquality: number
+  totalPrice: number
+}

@@ -25,23 +25,23 @@ export const NavLinksWrapper: FC = (): JSX.Element => {
       <NavLink to={API_ENUM.MENU} className={({ isActive }) => checkActivity(isActive)}>
         Menu
       </NavLink>
-      {Object.keys(user).length === 0
+      {!user
         ? <>
           <button
             className={style.AuthButton}
-            onClick={() => handleLoginClick()}>
+            onClick={handleLoginClick}>
             Login
           </button>
           <button
             className={style.AuthButton}
-            onClick={() => handleRegistrationClick()}>
+            onClick={handleRegistrationClick}>
             Register
           </button>
         </>
         : <>
           <button
             className={style.AuthButton}
-            onClick={async () => await handleLogoutClick()}>
+            onClick={handleLogoutClick}>
             Logout
           </button>
         </>

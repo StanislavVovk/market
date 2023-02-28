@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../common/common'
-import { ICartItem } from '../../../common/models/CartModel/ICartItem'
-import { cartSlice } from '../../../store/cart/cartSlice'
+import { useAppDispatch, useAppSelector } from 'common/common'
+import { ICartItem } from 'common/models/CartModel/ICartItem'
+import { cartSlice } from 'store/cart/cartSlice'
 import { IDishCardItem } from '../DishCard/DishCard'
 import style from './order.button.module.css'
 

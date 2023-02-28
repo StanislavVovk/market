@@ -5,6 +5,6 @@ import { getFirestore } from '@firebase/firestore'
 import { firebaseConfig } from './config'
 
 const app = initializeApp(firebaseConfig)
-const db = getFirestore(app)
+const db = getFirestore()
 const auth = getAuth()
-export { auth, db }
+export { auth, db, app }

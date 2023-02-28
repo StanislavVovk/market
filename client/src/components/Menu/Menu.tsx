@@ -1,6 +1,6 @@
+import { PageHeader, DishCard } from 'components/UI/common'
 import React, { FC } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import { PageHeader, DishCard } from '../UI/common'
 import { Cart } from './components/common'
 import style from './menu.module.css'
 

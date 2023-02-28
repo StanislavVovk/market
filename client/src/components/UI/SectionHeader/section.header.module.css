@@ -1,0 +1,6 @@
+.sectionHeaderLine {
+  flex-grow: 1;
+  height: 1px;
+  background: #888888;
+  width: auto;
+}

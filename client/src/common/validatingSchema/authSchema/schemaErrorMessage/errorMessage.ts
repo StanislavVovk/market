@@ -1,4 +1,4 @@
-import { UserValidationRule } from '../schemaRules/validationRules';
+import { UserValidationRule } from '../authSchemaRules/validationRules';
 
 export const UserValidationMessage = {
   USERNAME_REQUIRED: 'Username is required',

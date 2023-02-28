@@ -1,13 +1,17 @@
 import authReducer from './auth/authSlice'
 import cartReducer from './cart/cartSlice';
 import modalReducer from './modal/modalSlice'
-import { Auth } from '../services/services';
+import addressReducer from './address/addressSlice'
+import orderReducer from './order/orderSlice'
+import { Auth, Address, Order } from 'services/services'
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 const rootReducer = combineReducers({
   cartReducer,
   authReducer,
-  modalReducer
+  modalReducer,
+  addressReducer,
+  orderReducer
 });
 
 export const setupStore = () => configureStore({
@@ -17,7 +21,9 @@ export const setupStore = () => configureStore({
     thunk: {
       extraArgument: {
         services: {
-          Auth
+          Auth,
+          Address,
+          Order
         }
       }
     }

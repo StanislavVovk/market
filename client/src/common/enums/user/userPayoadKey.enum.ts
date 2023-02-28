@@ -2,5 +2,5 @@ export enum UserPayloadKey {
   USERNAME = 'username',
   EMAIL = 'email',
   PASSWORD = 'password',
-  REPEAT_PASSWORD = 'password_confirmation'
+  REPEAT_PASSWORD = 'passwordConfirmation'
 }

@@ -6,13 +6,13 @@ import {
   useAppSelector,
   UserPayloadKey
 } from 'common/common'
-import { IUserAuthData } from 'common/models/UserModel/IUserCredential'
+import { IUserAuthData } from 'common/models/UserAuth/IUserCredential'
+import { InputComponent } from 'components/UI/common'
 import React, { FC } from 'react'
 import { Form } from 'react-bootstrap'
 import { SubmitHandler } from 'react-hook-form'
 import { modalActionCreator, profileActionCreator } from 'store/actions'
 import { authSlice } from 'store/auth/authSlice'
-import { InputComponent } from '../../Input/InputComponent'
 import { GoogleSign } from '../GoogleSign/GoogleOA'
 import style from '../sign.module.css'
 
@@ -27,8 +27,10 @@ export const SignUpForm: FC = (): JSX.Element => {
     defaultValues: DEFAULT_SIGNUP_PAYLOAD,
     validationSchema: SignUpValidation
   })
+
   const dispatch = useAppDispatch()
   const loginStatus = useAppSelector(state => state.modalReducer.loginVisibility)
+
   const handleModalChange = () => {
     void dispatch(authSlice.actions.clearError())
     return dispatch(modalActionCreator.handleModal(loginStatus))
@@ -40,6 +42,7 @@ export const SignUpForm: FC = (): JSX.Element => {
       email,
       password
     } = values
+
     const regData = dispatch(profileActionCreator.registerUser({
       email,
       password
@@ -47,6 +50,7 @@ export const SignUpForm: FC = (): JSX.Element => {
     void dispatch(profileActionCreator.setUsername({ username }))
     return regData
   }
+
   const handleLSignUp: SubmitHandler<Record<keyof IUserAuthData, string>> = async (values, event) => {
     event?.preventDefault()
     await onSignUp(values)

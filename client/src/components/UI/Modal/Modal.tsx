@@ -1,4 +1,4 @@
-import { modalActionCreator } from '../../../store/actions'
+import { modalActionCreator } from 'store/actions'
 import style from './modal.module.css'
 import React, { FC } from 'react'
 import { Modal } from 'react-bootstrap';

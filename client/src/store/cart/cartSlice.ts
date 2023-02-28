@@ -1,14 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ICartItem, ShortCartItem } from '../../common/models/CartModel/ICartItem'
+import { CartModel, ICartItem, ShortCartItem } from 'common/models/CartModel/ICartItem'
 
-interface ICartInitialState {
-  cart: ICartItem[]
-  itemMap: Record<number, number>
-  totalEquality: number
-  totalPrice: number
-}
-
-const initialState: ICartInitialState = {
+const initialState: CartModel = {
   cart: [],
   itemMap: {},
   totalEquality: 0,
