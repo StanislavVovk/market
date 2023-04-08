@@ -1,25 +1,27 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { Col, Row } from 'react-bootstrap'
-import { useAppDispatch } from 'common/common'
-import { ShortCartItem } from 'common/models/CartModel/ICartItem'
+import { useAppDispatch, ICartItem } from 'common/common'
+import type { ShortCartItem } from 'common/common'
 import { cartSlice } from 'store/cart/cartSlice'
 import { QuantityController } from '../common'
-import { IDishCardItem } from '../DishCard/DishCard'
 import style from './cartItem.module.css'
 
-export const CartItem: FC<IDishCardItem> = ({ item }): JSX.Element => {
+export interface ICartItemProps {
+  cartItem: ICartItem
+}
+export const CartItem: FC<ICartItemProps> = ({ cartItem }): JSX.Element => {
   const {
     id,
     name,
     description,
     price,
     quantity
-  } = item
+  } = cartItem
   const dispatch = useAppDispatch()
   const removeItem = cartSlice.actions.removeItem
   const newItem: ShortCartItem = {
     id,
-    quantity: quantity as number
+    quantity
   }
   return (
     <Row className={style.CartItemBody}>
@@ -35,7 +37,7 @@ export const CartItem: FC<IDishCardItem> = ({ item }): JSX.Element => {
             Price: $ {price}
           </Col>
           <Col lg={6}>
-            <QuantityController item={item}/>
+            <QuantityController item={cartItem}/>
           </Col>
         </Row>
       </Col>

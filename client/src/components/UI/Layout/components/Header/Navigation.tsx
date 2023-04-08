@@ -1,15 +1,16 @@
 import pizza from 'assets/images/pizza.png'
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { NavLinksWrapper } from '../../../NavLinksWrapper/NavLinksWrapper'
+import { API_ENUM } from 'common/common'
+import { NavLinksWrapper } from 'components/UI/NavLinksWrapper/NavLinksWrapper'
 import style from './navigation.module.css'
 
 export const Navigation: FC = (): JSX.Element => (
   <div className={style.NavBar}>
     <Container className={style.NavBarContainer}>
       <div className={style.NavIcon}>
-        <Link to="/">
+        <Link to={API_ENUM.HOME}>
           <img src={pizza} alt="Pizza Hub"/>
         </Link>
       </div>

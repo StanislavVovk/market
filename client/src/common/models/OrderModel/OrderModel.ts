@@ -1,5 +1,5 @@
-import { IAddress } from 'store/address/addressSlice'
-import { ICartItem } from '../CartModel/ICartItem'
+import type { IAddress } from 'store/address/addressSlice'
+import type { ICartItem } from '../CartModel/ICartItem'
 
 export interface OrderModel {
   cart: ICartItem[]

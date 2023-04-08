@@ -1,6 +1,6 @@
 import { AuthErrorCodes } from '@firebase/auth'
-import { FirebaseError } from '@firebase/util';
-import { authErrorMessage } from '../constants/errorMessage'
+import type { FirebaseError } from '@firebase/util';
+import { authErrorMessage } from '../constants/messages/ErrorMessage'
 
 export const authErrorHandler = (error: FirebaseError) => {
   switch (error.code) {

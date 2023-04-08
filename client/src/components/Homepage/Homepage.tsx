@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
-import { Container } from 'react-bootstrap'
 import image from 'assets/images/homepage_bg.jpg'
 import { API_ENUM } from 'common/enums/common'
+import type { FC } from 'react'
+import { Container } from 'react-bootstrap'
 import style from './homepage.module.css'
 
 export const Homepage: FC = (): JSX.Element => {

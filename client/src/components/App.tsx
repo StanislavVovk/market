@@ -1,15 +1,16 @@
 import { API_ENUM, useAppDispatch, useAppSelector } from 'common/common'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
+import type { FC } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { authSlice } from 'store/auth/authSlice'
-import { UserModel } from '../common/models/UserModel/AuthUserModel'
+import { UserModel } from 'common/models/UserModel/AuthUserModel'
 import { auth } from '../firebase/firebase'
-import { getUserAddress } from '../store/address/actions/actions'
+import { getUserAddress } from 'store/address/actions/actions'
 import { addressActions } from 'store/address/addressSlice'
-import { AuthActionTypes } from '../store/auth/actions/AuthActionTypes'
-import { Homepage, Layout, Menu, Order } from './common'
+import { AuthActionTypes } from 'store/auth/actions/AuthActionTypes'
+import { Homepage, Layout, MenuComponent, OrderComponent } from './common'
 
-export const App: React.FC = (): JSX.Element => {
+export const App: FC = (): JSX.Element => {
   const dispatch = useAppDispatch()
   const checkUser = authSlice.actions[AuthActionTypes.CHECK_USER]
   const user = useAppSelector(state => state.authReducer.user)
@@ -54,9 +55,9 @@ export const App: React.FC = (): JSX.Element => {
       <Router>
         <Layout>
           <Routes>
-            <Route index element={<Homepage/>}/>
-            <Route path={API_ENUM.MENU} element={<Menu/>}/>
-            <Route path={API_ENUM.ORDER} element={<Order/>}/>
+            <Route path={API_ENUM.HOME} element={<Homepage/>}/>
+            <Route path={API_ENUM.MENU} element={<MenuComponent/>}/>
+            <Route path={API_ENUM.ORDER} element={<OrderComponent/>}/>
           </Routes>
         </Layout>
       </Router>

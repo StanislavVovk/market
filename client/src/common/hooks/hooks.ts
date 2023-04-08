@@ -1,4 +1,4 @@
-import { RootState, AppDispatch } from 'store/store'
+import type { RootState, AppDispatch } from 'store/store'
 import { useAppForm } from './useAppForm/useAppForm';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

@@ -1,10 +1,10 @@
-enum FooterHeaderEnum {
+export enum FooterHeaderEnum {
   COMPANY = 'Company',
   LEGAL = 'Legal',
   SOCIAL = 'Social'
 }
 
-enum FooterLinkEnum {
+export enum FooterLinkEnum {
   About = 'About Us',
   FAQ = 'FAQ',
   Contact = 'Contact Us',
@@ -12,5 +12,3 @@ enum FooterLinkEnum {
   Privacy = 'Privacy policy',
   Disclaimer = 'Disclaimer'
 }
-
-export { FooterHeaderEnum, FooterLinkEnum }

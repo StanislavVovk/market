@@ -1,4 +1,5 @@
-import { AuthUserMessages } from 'common/enums/messages/AuthUserMessages'
+
+import { AuthUserMessages } from 'common/constants/messages/AuthUserMessages'
 import { AddressUserModel } from 'common/models/AddressUser/AddressUserModel'
 import { DatabaseService } from '../database/database.service'
 
@@ -11,9 +12,17 @@ class AddressService extends DatabaseService<AddressUserModel> {
       })
   }
 
-  async getSingleUserAddressData (uid: string) {
+  async getSingleUserAddressData (uid: string): Promise<AddressUserModel> {
     return await this.getSingleDoc(uid)
-      .then((addressData) => addressData as AddressUserModel
+      .then((data) => {
+        const addressData = data.data()
+        if (addressData) {
+          return addressData as AddressUserModel
+        }
+        // todo need to create else error
+        // also need to reformat data check
+        throw new Error('No address')
+      }
       )
       .catch((e) => {
         throw e
