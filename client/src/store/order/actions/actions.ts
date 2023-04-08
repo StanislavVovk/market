@@ -1,6 +1,6 @@
-import { FirebaseError } from '@firebase/util'
+import type { FirebaseError } from '@firebase/util'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { OrderDataType } from 'common/models/OrderModel/OrderModel'
+import type { OrderDataType } from 'common/common'
 import { OrderService } from 'services/order/order.service'
 import { OrderActionTypes } from './OrderActionTypes'
 

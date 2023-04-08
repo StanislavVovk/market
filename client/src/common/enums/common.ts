@@ -1,4 +1,3 @@
-import { AddressPayloadEnum } from './adress/addressPayload.enum'
 import { API_ENUM } from './api/api.enum'
 import { FooterHeaderEnum, FooterLinkEnum } from './footer/footer.enum'
 import { UseFormMode } from './user/userMode.enum'
@@ -8,6 +7,5 @@ export {
   FooterLinkEnum,
   FooterHeaderEnum,
   UseFormMode,
-  UserPayloadKey,
-  AddressPayloadEnum
+  UserPayloadKey
 }

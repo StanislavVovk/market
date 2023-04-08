@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { useAppSelector } from 'common/common'
 import style from './cart.module.css'
 import { FullCart, VoidCart } from './components/common'

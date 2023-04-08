@@ -1,5 +1,6 @@
 export enum ServerEndpoints {
   USERS = 'users',
   ADDRESS = 'address',
-  ORDERS = 'orders'
+  ORDERS = 'orders',
+  MENU = 'menu'
 }

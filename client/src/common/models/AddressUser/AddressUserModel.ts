@@ -1,4 +1,4 @@
-import { IAddress } from 'store/address/addressSlice'
+import type { IAddress } from 'store/address/addressSlice'
 
 export interface AddressUserModel {
   uid: string

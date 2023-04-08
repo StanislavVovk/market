@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import style from './section.header.module.css'
 
 interface ISectionHeaderProps {
@@ -9,7 +9,7 @@ export const SectionHeader: FC<ISectionHeaderProps> = ({ headerText }): JSX.Elem
   return (
     <div className={'d-flex align-items-center'}>
       <h2 className={'pe-2'}>{headerText}</h2>
-      <div className={`ms-auto ${style.sectionHeaderLine}`}></div>
+      <div className={`ms-auto ${style.sectionHeaderLine}`}/>
     </div>
   )
 }

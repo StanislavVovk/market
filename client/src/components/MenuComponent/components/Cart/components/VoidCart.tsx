@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import style from '../cart.module.css'
 
 export const VoidCart: FC = (): JSX.Element => (

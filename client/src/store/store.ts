@@ -3,7 +3,8 @@ import cartReducer from './cart/cartSlice';
 import modalReducer from './modal/modalSlice'
 import addressReducer from './address/addressSlice'
 import orderReducer from './order/orderSlice'
-import { Auth, Address, Order } from 'services/services'
+import menuReducer from './menu/menuSlice'
+import { Auth, Address, Order, Menu } from 'services/services'
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   authReducer,
   modalReducer,
   addressReducer,
-  orderReducer
+  orderReducer,
+  menuReducer
 });
 
 export const setupStore = () => configureStore({
@@ -23,7 +25,8 @@ export const setupStore = () => configureStore({
         services: {
           Auth,
           Address,
-          Order
+          Order,
+          Menu
         }
       }
     }

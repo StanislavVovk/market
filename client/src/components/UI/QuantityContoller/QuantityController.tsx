@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { useAppDispatch, useAppSelector } from 'common/common'
-import { ICartItem } from 'common/models/CartModel/ICartItem'
+import type { ICartItem } from 'common/common'
 import { cartSlice } from 'store/cart/cartSlice'
-import { IDishCardItem } from '../DishCard/DishCard'
+import type { IDishCardItem } from '../DishCard/DishCard'
 import style from './order.button.module.css'
 
 export const QuantityController: FC<IDishCardItem> = ({ item }): JSX.Element => {
@@ -21,7 +21,7 @@ export const QuantityController: FC<IDishCardItem> = ({ item }): JSX.Element => 
     name: item.name,
     description: item.description,
     price: item.price,
-    imageURL: item.imageURL,
+    img: item.img,
     quantity: itemQuantity
   }
   const handleIncreaseClick = (newItem: ICartItem) => {
