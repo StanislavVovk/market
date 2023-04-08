@@ -1,11 +1,11 @@
 import { Homepage } from './Homepage/Homepage'
-import { Menu } from './Menu/Menu'
-import { Order } from './Order/Order'
+import { MenuComponent } from './MenuComponent/MenuComponent'
+import { OrderComponent } from './Order/OrderComponent'
 import { Layout } from './UI/common'
 
 export {
   Homepage,
-  Menu,
+  MenuComponent,
   Layout,
-  Order
+  OrderComponent
 }

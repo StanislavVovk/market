@@ -1,4 +1,4 @@
-import { AddressPayloadEnum } from '../enums/common'
+import { AddressPayloadEnum } from './addressPayload.enum'
 
 export const OrderDefaultPayload = {
   [AddressPayloadEnum.BUILDING_NUMBER]: '',

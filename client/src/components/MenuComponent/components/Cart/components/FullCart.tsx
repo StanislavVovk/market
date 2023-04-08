@@ -1,8 +1,8 @@
 import { useAppDispatch, useAppSelector, API_ENUM } from 'common/common'
-import { ICartItem } from 'common/models/CartModel/ICartItem'
+import type { ICartItem } from 'common/common'
 import { CartItem } from 'components/UI/common'
 import { cartSlice } from 'store/cart/cartSlice'
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { Link } from 'react-router-dom'
 import style from '../cart.module.css'
 
@@ -23,7 +23,7 @@ export const FullCart: FC = (): JSX.Element => {
               </span>
       </div>
       <div className={`mx-2 ${style.CartItemWrapper}`}>
-        {cart.map((item: ICartItem): JSX.Element => <CartItem key={item.id} item={item}/>)}
+        {cart.map((item: ICartItem): JSX.Element => <CartItem key={item.id} cartItem={item}/>)}
       </div>
       <div className={`${style.Separator}`}></div>
       <div className={`${style.CartUtils}`}>

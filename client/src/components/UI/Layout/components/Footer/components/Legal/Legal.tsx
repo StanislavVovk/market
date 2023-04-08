@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { Link } from 'react-router-dom'
-import { API_ENUM, FooterHeaderEnum } from '../../../../../../../common/common'
+import { API_ENUM, FooterHeaderEnum } from 'common/common'
 import style from '../../footer.module.css'
 
 export const Legal: FC = (): JSX.Element => (

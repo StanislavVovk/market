@@ -1,4 +1,4 @@
-import { API_ENUM, FooterHeaderEnum, FooterLinkEnum } from '../../../../../../../common/common';
+import { API_ENUM, FooterHeaderEnum, FooterLinkEnum } from 'common/common';
 import style from '../../footer.module.css'
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom';
