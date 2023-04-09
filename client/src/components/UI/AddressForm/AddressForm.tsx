@@ -26,7 +26,6 @@ export const AddressForm: FC = (): JSX.Element => {
     handleSubmit
   } = useAppForm({
     mode: 'all',
-    // todo need to refactor this
     defaultValues: (!address ? OrderDefaultPayload : address),
     validationSchema: OrderValidationSchema
   })

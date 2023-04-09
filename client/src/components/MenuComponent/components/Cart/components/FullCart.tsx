@@ -1,9 +1,10 @@
-import { useAppDispatch, useAppSelector, API_ENUM } from 'common/common'
 import type { ICartItem } from 'common/common'
+import { useAppDispatch, useAppSelector, API_ENUM } from 'common/common'
 import { CartItem } from 'components/UI/common'
-import { cartSlice } from 'store/cart/cartSlice'
 import type { FC } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { modalActionCreator } from 'store/actions'
+import { cartSlice } from 'store/cart/cartSlice'
 import style from '../cart.module.css'
 
 export const FullCart: FC = (): JSX.Element => {
@@ -14,6 +15,15 @@ export const FullCart: FC = (): JSX.Element => {
     totalEquality
   } = useAppSelector(state => state.cartReducer)
   const { clearCart } = cartSlice.actions
+  const user = useAppSelector(state => state.authReducer.user)
+  const navigate = useNavigate()
+  const handleCreateOrder = () => {
+    if (!user) {
+      dispatch(modalActionCreator.showLogin())
+    } else {
+      navigate(API_ENUM.ORDER)
+    }
+  }
   return (
     <div className={`mt-4 ${style.Body}`}>
       <h1 className={'my-2 mx-2'}>Cart</h1>
@@ -25,11 +35,14 @@ export const FullCart: FC = (): JSX.Element => {
       <div className={`mx-2 ${style.CartItemWrapper}`}>
         {cart.map((item: ICartItem): JSX.Element => <CartItem key={item.id} cartItem={item}/>)}
       </div>
-      <div className={`${style.Separator}`}></div>
+      <div className={`${style.Separator}`}/>
       <div className={`${style.CartUtils}`}>
-        <Link to={API_ENUM.ORDER}>
-          <button className={`${style.CartNavigationButton}`}> Order {totalEquality} for ${totalPrice}</button>
-        </Link>
+        <button
+          className={`${style.CartNavigationButton}`}
+          onClick={handleCreateOrder}
+        >
+          Order {totalEquality} for ${totalPrice}
+        </button>
       </div>
     </div>
   )

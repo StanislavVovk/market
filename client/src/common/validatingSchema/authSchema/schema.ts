@@ -41,7 +41,6 @@ export const SignUpValidation = Joi.object(
       })
   }
 )
-// todo think about login validation
 export const LoginValidationSchema = Joi.object(
   {
     email: Joi.string()

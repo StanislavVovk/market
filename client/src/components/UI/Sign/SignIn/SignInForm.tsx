@@ -1,3 +1,4 @@
+import type { UserAuthData } from 'common/common'
 import {
   DEFAULT_LOGIN_PAYLOAD,
   LoginValidationSchema,
@@ -6,12 +7,10 @@ import {
   useAppForm,
   useAppSelector
 } from 'common/common'
-import { UserAuthData } from 'common/models/UserAuth/IUserCredential'
-
 import { InputComponent } from 'components/UI/Input/InputComponent'
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { Form } from 'react-bootstrap'
-import { SubmitHandler } from 'react-hook-form'
+import type { SubmitHandler } from 'react-hook-form'
 import { modalActionCreator, profileActionCreator } from 'store/actions'
 import { authSlice } from 'store/auth/authSlice'
 import { GoogleSign } from '../GoogleSign/GoogleOA'
@@ -98,7 +97,7 @@ export const SignInForm: FC = (): JSX.Element => {
         New to PizzaHub?
         <button
           className={`ms-1 ${style.SuggestionButton}`}
-          onClick={() => handleModalChange()}
+          onClick={ handleModalChange}
         >
           Sign up
         </button>

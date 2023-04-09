@@ -1,11 +1,9 @@
-import React, { FC } from 'react'
-import { NavLink } from 'react-router-dom'
 import { useAppDispatch, useAppSelector, API_ENUM } from 'common/common'
-import { modalActionCreator, profileActionCreator } from 'store/actions'
+import type { FC } from 'react'
+import { modalActionCreator, profileActionCreator, cartActionCreator } from 'store/actions'
 import { Sign } from '../common'
+import { NavLinkElement } from '../NavLink/NavLink'
 import style from './navLinks.module.css'
-
-const checkActivity = (ActivityStatus: boolean): string => ActivityStatus ? style.NavLinkDefault.concat(' ', style.NavLinkActive) : style.NavLinkDefault
 
 export const NavLinksWrapper: FC = (): JSX.Element => {
   const dispatch = useAppDispatch()
@@ -16,15 +14,17 @@ export const NavLinksWrapper: FC = (): JSX.Element => {
   const onLogout = () => dispatch(profileActionCreator.logoutUser({}))
   const handleLogoutClick = async () => {
     await onLogout()
+    dispatch(cartActionCreator.clearCart())
   }
+
   return (
-    <div className="ms-auto my-auto d-flex">
-      <NavLink to={API_ENUM.HOME} className={({ isActive }) => checkActivity(isActive)}>
+    <div className="ms-auto me-auto d-flex">
+      <NavLinkElement link={API_ENUM.HOME}>
         Home
-      </NavLink>
-      <NavLink to={API_ENUM.MENU} className={({ isActive }) => checkActivity(isActive)}>
+      </NavLinkElement>
+      <NavLinkElement link={API_ENUM.MENU}>
         Menu
-      </NavLink>
+      </NavLinkElement>
       {!user
         ? <>
           <button

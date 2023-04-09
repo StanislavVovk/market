@@ -1,7 +1,7 @@
 export enum FooterHeaderEnum {
   COMPANY = 'Company',
   LEGAL = 'Legal',
-  SOCIAL = 'Social'
+  SOCIAL = 'Follow us'
 }
 
 export enum FooterLinkEnum {

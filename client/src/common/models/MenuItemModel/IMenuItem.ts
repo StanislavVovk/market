@@ -7,11 +7,8 @@ export interface IMenuItem {
 }
 export type MenuItemModel = Record<string, IMenuItem[]>
 
-// todo create right category names
 export enum MenuCategoryName {
-  NonVeg = 'NonVeg',
-  Veg = 'Veg',
-  BestSeller = 'BestSeller'
+  NonVeg = 'Non Vegetarian Pizza',
+  Veg = 'Vegetarian Pizza',
+  BestSeller = 'Best Seller'
 }
-
-export type ValueOf<T> = T[keyof T]

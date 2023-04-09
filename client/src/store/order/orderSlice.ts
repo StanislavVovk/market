@@ -1,15 +1,15 @@
-import { FirebaseError } from '@firebase/util'
 import { createSlice, isAnyOf } from '@reduxjs/toolkit'
-import { ICartItem } from 'common/models/CartModel/ICartItem'
+import type { SerializedError } from '@reduxjs/toolkit'
+import type { ICartItem } from 'common/models/CartModel/ICartItem'
 import { placeOrder } from '../actions'
-import { IAddress } from '../address/addressSlice'
+import type { IAddress } from '../address/addressSlice'
 
 interface orderInitialState {
   address: IAddress | undefined
   paymentMethod: string | undefined
   order: ICartItem[] | undefined
   isLoading: boolean
-  error: FirebaseError | undefined
+  error: SerializedError | undefined
   modalVisibility: boolean | undefined
 }
 
@@ -30,30 +30,22 @@ export const orderSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder
-      .addMatcher(
-        isAnyOf(
-          placeOrder.fulfilled
-        ),
-        (state) => {
-          state = initialState
-        })
-      .addMatcher(
-        isAnyOf(
-          placeOrder.pending
-        ),
+    builder.addMatcher(isAnyOf(placeOrder.fulfilled),
+      (state) => {
+        state = initialState
+      })
+      .addMatcher(isAnyOf(placeOrder.pending),
         (state) => {
           state.isLoading = true
+          state.address = undefined
+          state.error = undefined
         }
       )
-      .addMatcher(
-        isAnyOf(
-          placeOrder.rejected
-        ),
-        (state) => {
+      .addMatcher(isAnyOf(placeOrder.rejected),
+        (state, action) => {
           state.isLoading = false
-          // todo create error handler for this
-          // learn how it's really works
+          // state.error = action.error
+          // todo create test for this
         }
       )
   }
