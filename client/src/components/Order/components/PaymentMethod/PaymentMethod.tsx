@@ -1,12 +1,12 @@
-import { useAppSelector, useAppDispatch } from 'common/common'
-import { OrderModel, OrderDataType } from 'common/models/OrderModel/OrderModel'
-import { UserModel } from 'common/models/UserModel/AuthUserModel'
+import type { OrderModel, OrderDataType, UserModel } from 'common/common'
+import { useAppSelector, useAppDispatch, PaymentMethod } from 'common/common'
 import { SectionHeader } from 'components/UI/common'
-import React, { FC, useState, FormEvent } from 'react'
+import type { FC, FormEvent, ChangeEvent } from 'react'
+import { useState } from 'react'
 import { Form, Button, FormCheck } from 'react-bootstrap'
-import { IAddress } from 'store/address/addressSlice'
+import type { IAddress } from 'store/address/addressSlice'
 import { placeOrder } from 'store/order/actions/actions'
-import { orderActions } from '../../../../store/order/orderSlice'
+import { orderActions } from 'store/order/orderSlice'
 
 export const PaymentMethodComponent: FC = (): JSX.Element => {
   const [paymentMethod, setPaymentMethod] = useState('')
@@ -17,6 +17,10 @@ export const PaymentMethodComponent: FC = (): JSX.Element => {
   const { uid } = user
 
   const onSendOrder = (data: OrderDataType) => dispatch(placeOrder(data))
+
+  const handleSettingPaymentMethod = (event: ChangeEvent<HTMLInputElement>) => {
+    setPaymentMethod(event.target.value)
+  }
 
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     const order: OrderModel = {
@@ -36,47 +40,47 @@ export const PaymentMethodComponent: FC = (): JSX.Element => {
         dispatch(orderActions.changeModalVisibility())
       })
   }
-  // fixme find solution of type mismatch
+
   return (
     <>
       <SectionHeader headerText={'Choose payment method'}/>
       <Form
         onSubmit={handleFormSubmit}>
         <FormCheck
-          type="radio"
-          // @ts-expect-error
-          onClick={(event) => setPaymentMethod(event.target.labels[0].outerText)}
-          name={'paymentMethod'}
           id="cash"
-          label={'Cash on delivery'}
+          type="radio"
+          onChange={handleSettingPaymentMethod}
+          name={PaymentMethod.PAYMENT_METHOD}
+          label={PaymentMethod.CASH}
+          value={PaymentMethod.CASH}
           required
         />
         <FormCheck
-          required
-          type="radio"
-          // @ts-expect-error
-          onClick={(event) => setPaymentMethod(event.target.labels[0].outerText)}
-          name={'paymentMethod'}
           id="wallet"
-          label={'Wallet'}
+          type="radio"
+          onChange={handleSettingPaymentMethod}
+          name={PaymentMethod.PAYMENT_METHOD}
+          label={PaymentMethod.WALLET}
+          value={PaymentMethod.WALLET}
+          required
         />
         <FormCheck
-          required
-          type="radio"
-          // @ts-expect-error
-          onClick={(event) => setPaymentMethod(event.target.labels[0].outerText)}
-          name={'paymentMethod'}
           id="card"
-          label={'Credit/Debit card'}
+          type="radio"
+          onChange={handleSettingPaymentMethod}
+          name={PaymentMethod.PAYMENT_METHOD}
+          label={PaymentMethod.CREDIT}
+          value={PaymentMethod.CREDIT}
+          required
         />
         <FormCheck
-          type="radio"
-          required
-          // @ts-expect-error
-          onClick={(event) => setPaymentMethod(event.target.labels[0].outerText)}
-          name={'paymentMethod'}
           id="netBanking"
-          label={'Net banking'}
+          type="radio"
+          onChange={handleSettingPaymentMethod}
+          name={PaymentMethod.PAYMENT_METHOD}
+          label={PaymentMethod.NET_BANKING}
+          value={PaymentMethod.NET_BANKING}
+          required
         />
         <Button className="mt-3" type={'submit'}>
           Place order

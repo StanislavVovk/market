@@ -8,13 +8,12 @@ import {
   authErrorMessage,
   ServerEndpoints
 } from './constants/common'
-import { API_ENUM, FooterLinkEnum, FooterHeaderEnum, UseFormMode, UserPayloadKey } from './enums/common'
+import { API_ENUM, FooterLinkEnum, FooterHeaderEnum, UseFormMode, UserPayloadKey, PaymentMethod } from './enums/common'
 import { useAppForm, useAppSelector, useEffect, useAppDispatch, useState } from './hooks/hooks'
 import {
   AddressUserModel,
   CartModel,
   ICartItem,
-  ShortCartItem,
   UserAuthData,
   OrderDataType,
   UsernameData,
@@ -49,13 +48,13 @@ export {
   SignUpValidation,
   LoginValidationSchema,
   OrderValidationSchema,
-  ServerEndpoints
+  ServerEndpoints,
+  PaymentMethod
 }
 export type {
   AddressUserModel,
   CartModel,
   ICartItem,
-  ShortCartItem,
   UserAuthData,
   OrderDataType,
   UsernameData,

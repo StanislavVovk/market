@@ -1,5 +1,5 @@
 import type { AddressUserModel } from './AddressUser/AddressUserModel'
-import type { CartModel, ICartItem, ShortCartItem } from './CartModel/ICartItem'
+import type { CartModel, ICartItem } from './CartModel/ICartItem'
 import type { IMenuItem, MenuItemModel } from './MenuItemModel/IMenuItem'
 import type { OrderModel, OrderDataType, OrderData } from './OrderModel/OrderModel'
 import type { IUserAuthData, UserAuthData, UsernameData } from './UserAuth/IUserCredential'
@@ -9,7 +9,6 @@ export type {
   AddressUserModel,
   CartModel,
   ICartItem,
-  ShortCartItem,
   UserAuthData,
   OrderDataType,
   UsernameData,

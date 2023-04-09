@@ -1,14 +1,15 @@
+import type { UserModel } from 'common/common'
 import { API_ENUM, useAppDispatch, useAppSelector } from 'common/common'
-import { useEffect } from 'react'
 import type { FC } from 'react'
+import { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { authSlice } from 'store/auth/authSlice'
-import { UserModel } from 'common/models/UserModel/AuthUserModel'
-import { auth } from '../firebase/firebase'
 import { getUserAddress } from 'store/address/actions/actions'
 import { addressActions } from 'store/address/addressSlice'
 import { AuthActionTypes } from 'store/auth/actions/AuthActionTypes'
+import { authSlice } from 'store/auth/authSlice'
+import { auth } from '../firebase/firebase'
 import { Homepage, Layout, MenuComponent, OrderComponent } from './common'
+import { PrivateRoute } from './UI/PrivateRouter/PrivateRoute'
 
 export const App: FC = (): JSX.Element => {
   const dispatch = useAppDispatch()
@@ -47,8 +48,6 @@ export const App: FC = (): JSX.Element => {
       }
     })
   }, [checkUser, dispatch])
-  // todo create private route for order page
-  // fixme Problem's with cookies by simplifying of User type
 
   return (
     <>
@@ -57,7 +56,7 @@ export const App: FC = (): JSX.Element => {
           <Routes>
             <Route path={API_ENUM.HOME} element={<Homepage/>}/>
             <Route path={API_ENUM.MENU} element={<MenuComponent/>}/>
-            <Route path={API_ENUM.ORDER} element={<OrderComponent/>}/>
+            <Route path={API_ENUM.ORDER} element={<PrivateRoute component={OrderComponent}/>}/>
           </Routes>
         </Layout>
       </Router>

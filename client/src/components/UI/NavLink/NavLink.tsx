@@ -1,19 +1,20 @@
-import React, { FC } from 'react'
+import type { FC, ReactElement, ReactNode } from 'react'
+
 import { NavLink } from 'react-router-dom'
 import style from './navLink.module.css'
 
 interface INavLinkProps {
-  text: string
   link: string
+  children?: ReactElement | number | string | ReactNode
 }
 
-// todo recreate custom navigation link
-export const NavLinkElement: FC<INavLinkProps> = ({
-  link,
-  text
-}): JSX.Element => (
-  <NavLink to={link}
-           className={({ isActive }): string => isActive ? style.NavLinkStyle + ' ' + style.NavLinkActive : style.NavLinkStyle}>
-    ${text}
-  </NavLink>
-)
+export const NavLinkElement: FC<INavLinkProps> = ({ link, children }): JSX.Element => {
+  const checkActivity = (isActive: boolean): string => {
+    return isActive ? style.NavLinkDefault.concat(' ', style.NavLinkActive) : style.NavLinkDefault
+  }
+  return (
+    <NavLink to={link} className={({ isActive }) => checkActivity(isActive)}>
+      {children}
+    </NavLink>
+  )
+}

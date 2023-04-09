@@ -1,8 +1,10 @@
-import type { FC } from 'react'
-import { useAppDispatch, useAppSelector } from 'common/common'
 import type { ICartItem } from 'common/common'
+import { useAppDispatch, useAppSelector } from 'common/common'
+import type { FC } from 'react'
 import { cartSlice } from 'store/cart/cartSlice'
+
 import type { IDishCardItem } from '../DishCard/DishCard'
+
 import style from './order.button.module.css'
 
 export const QuantityController: FC<IDishCardItem> = ({ item }): JSX.Element => {

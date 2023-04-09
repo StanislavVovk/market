@@ -19,8 +19,6 @@ class AddressService extends DatabaseService<AddressUserModel> {
         if (addressData) {
           return addressData as AddressUserModel
         }
-        // todo need to create else error
-        // also need to reformat data check
         throw new Error('No address')
       }
       )

@@ -3,6 +3,7 @@ import { Button, Modal } from 'react-bootstrap'
 import { useAppSelector, useAppDispatch, API_ENUM } from 'common/common'
 import { useNavigate } from 'react-router-dom'
 import { orderActions } from 'store/order/orderSlice'
+import { cartActions } from '../../../../store/cart/cartSlice'
 import style from './modal.module.css'
 export const OrderModal: FC = (): JSX.Element => {
   const modal = useAppSelector(state => state.orderReducer.modalVisibility)
@@ -11,6 +12,7 @@ export const OrderModal: FC = (): JSX.Element => {
   const handleModalClose = () => {
     dispatch(orderActions.changeModalVisibility())
     navigate(API_ENUM.HOME)
+    dispatch(cartActions.clearCart())
   }
   return (
     <Modal

@@ -1,7 +1,7 @@
+import { useAppDispatch } from 'common/common'
+import type { ICartItem } from 'common/common'
 import type { FC } from 'react'
 import { Col, Row } from 'react-bootstrap'
-import { useAppDispatch, ICartItem } from 'common/common'
-import type { ShortCartItem } from 'common/common'
 import { cartSlice } from 'store/cart/cartSlice'
 import { QuantityController } from '../common'
 import style from './cartItem.module.css'
@@ -9,20 +9,15 @@ import style from './cartItem.module.css'
 export interface ICartItemProps {
   cartItem: ICartItem
 }
+
 export const CartItem: FC<ICartItemProps> = ({ cartItem }): JSX.Element => {
   const {
-    id,
     name,
     description,
-    price,
-    quantity
+    price
   } = cartItem
   const dispatch = useAppDispatch()
   const removeItem = cartSlice.actions.removeItem
-  const newItem: ShortCartItem = {
-    id,
-    quantity
-  }
   return (
     <Row className={style.CartItemBody}>
       <Col lg={10}>
@@ -43,7 +38,7 @@ export const CartItem: FC<ICartItemProps> = ({ cartItem }): JSX.Element => {
       </Col>
       <Col lg={2} className={style.RemoveWrapper}>
         <button className={style.RemoveItemButton}
-                onClick={() => dispatch(removeItem(newItem))}>
+                onClick={() => dispatch(removeItem(cartItem))}>
           <i className={'fa fa-xmark fa-lg'} aria-hidden={true}></i>
         </button>
       </Col>
