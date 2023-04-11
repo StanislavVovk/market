@@ -1,6 +1,7 @@
-import { doc, setDoc, getDoc } from '@firebase/firestore'
 import type { DocumentData } from '@firebase/firestore'
-import { OrderData, OrderMessages } from 'common/common'
+import { doc, setDoc, getDoc } from '@firebase/firestore'
+import { OrderMessages } from 'common/common'
+import type { OrderData } from 'common/common'
 import { DatabaseService } from '../database/database.service'
 
 export class OrderService extends DatabaseService<OrderData> {

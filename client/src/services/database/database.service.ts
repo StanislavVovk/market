@@ -1,5 +1,12 @@
+import type {
+  Firestore,
+  DocumentData,
+  CollectionReference,
+  DocumentSnapshot,
+  QueryDocumentSnapshot
+} from '@firebase/firestore'
 import { getDocs, getDoc, collection, setDoc, doc, deleteDoc } from '@firebase/firestore'
-import type { Firestore, DocumentData, CollectionReference, DocumentSnapshot, QueryDocumentSnapshot } from '@firebase/firestore'
+
 abstract class DatabaseService<T extends DocumentData> {
   protected readonly _collectionRef: CollectionReference
   private readonly _db: Firestore

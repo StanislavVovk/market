@@ -1,5 +1,6 @@
 import { setDoc, doc } from '@firebase/firestore'
 import type { IMenuItem, MenuItemModel } from 'common/common'
+import { MENU_MESSAGE } from 'common/common'
 import { DatabaseService } from '../database/database.service'
 
 export class MenuService extends DatabaseService<MenuItemModel> {
@@ -10,14 +11,15 @@ export class MenuService extends DatabaseService<MenuItemModel> {
 
   async createMenuItem (categoryName: string, menuItem: IMenuItem) {
     // todo create dropdown with category names when generate new item in frontend part
+    // need to create object with menu items
+
     const menuRef = doc(this._collectionRef, categoryName)
     const menuData = await this.getMenuCategoryItems(categoryName)
     if (menuData) {
       menuData[categoryName].push(menuItem)
       return await setDoc(menuRef, { [categoryName]: menuData })
         .then(() => {
-          // todo create here response
-          return 'Item created successfully'
+          return MENU_MESSAGE.CREATING_SUCCESS
         })
         .catch(e => {
           throw e
@@ -26,8 +28,7 @@ export class MenuService extends DatabaseService<MenuItemModel> {
     const newMenuItem: MenuItemModel = { [categoryName]: [menuItem] }
     return await setDoc(menuRef, newMenuItem)
       .then(() => {
-        // todo create response here
-        return 'Item created successfully'
+        return MENU_MESSAGE.CREATING_SUCCESS
       })
       .catch(error => {
         throw error

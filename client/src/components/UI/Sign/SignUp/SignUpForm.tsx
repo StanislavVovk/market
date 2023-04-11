@@ -8,7 +8,7 @@ import {
 } from 'common/common'
 import { IUserAuthData } from 'common/models/UserAuth/IUserCredential'
 import { InputComponent } from 'components/UI/common'
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { Form } from 'react-bootstrap'
 import { SubmitHandler } from 'react-hook-form'
 import { modalActionCreator, profileActionCreator } from 'store/actions'
