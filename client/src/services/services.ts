@@ -5,7 +5,11 @@ import { AuthService } from './auth/auth.service'
 import { MenuService } from './menu/menu.service'
 import { OrderService } from './order/order.service'
 // 'authorised'
-const Auth = new AuthService(auth)
+const Auth = new AuthService({
+  auth,
+  db,
+  collectionName: ServerEndpoints.USERS
+})
 const Address = new AddressService({
   db,
   collectionName: ServerEndpoints.ADDRESS

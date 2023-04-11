@@ -33,11 +33,11 @@ export const SignUpValidation = Joi.object(
         'string.max': UserValidationMessage.PASSWORD_MAX_LENGTH,
         'string.min': UserValidationMessage.PASSWORD_MIN_LENGTH
       }),
-    password_confirmation: Joi.any()
-      .valid(Joi.ref('password'))
+    passwordConfirmation: Joi.string()
       .required()
+      .equal(Joi.ref('password'))
       .messages({
-        'any.only': UserValidationMessage.PASSWORD_CONFIRMATION_ERROR_MESSAGE
+        'string.empty': UserValidationMessage.PASSWORD_CONFIRMATION_ERROR_MESSAGE
       })
   }
 )

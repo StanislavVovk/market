@@ -6,7 +6,8 @@ import {
   OrderMessages,
   AuthUserMessages,
   authErrorMessage,
-  ServerEndpoints
+  ServerEndpoints,
+  MENU_MESSAGE
 } from './constants/common'
 import { API_ENUM, FooterLinkEnum, FooterHeaderEnum, UseFormMode, UserPayloadKey, PaymentMethod } from './enums/common'
 import { useAppForm, useAppSelector, useEffect, useAppDispatch, useState } from './hooks/hooks'
@@ -49,7 +50,8 @@ export {
   LoginValidationSchema,
   OrderValidationSchema,
   ServerEndpoints,
-  PaymentMethod
+  PaymentMethod,
+  MENU_MESSAGE
 }
 export type {
   AddressUserModel,

@@ -1,24 +1,31 @@
+import type { User, Auth, AuthProvider } from '@firebase/auth'
 import {
-  Auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
   updateProfile,
   deleteUser,
-  User,
-  AuthProvider, getAuth
+  getAuth
 } from '@firebase/auth'
-import { FirebaseError } from '@firebase/util'
+import type { Firestore } from '@firebase/firestore'
+import type { FirebaseError } from '@firebase/util'
+import type { UserAuthData, UsernameData, UserModel } from 'common/common'
 import { authErrorHandler } from 'common/errors/authErrors'
-import { UserAuthData, UsernameData } from 'common/models/UserAuth/IUserCredential'
-import { UserModel } from 'common/models/UserModel/AuthUserModel'
+import { DatabaseService } from '../database/database.service'
 
-// todo modify Auth service (must extend DatabaseService)
-export class AuthService {
+export class AuthService extends DatabaseService<UserModel> {
   private readonly _auth: Auth
 
-  constructor (auth: Auth) {
+  constructor ({
+    auth,
+    db,
+    collectionName
+  }: { auth: Auth, db: Firestore, collectionName: string }) {
+    super({
+      db,
+      collectionName
+    })
     this._auth = auth
   }
 
@@ -28,22 +35,7 @@ export class AuthService {
   }: Record<keyof UserAuthData, string>): Promise<UserModel> {
     return await signInWithEmailAndPassword(this._auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user
-        const {
-          uid,
-          email,
-          emailVerified,
-          photoURL,
-          displayName
-        } = user
-        const userData: UserModel = {
-          uid,
-          email,
-          emailVerified,
-          photoURL,
-          displayName
-        }
-        return userData
+        return this.dataTransformer(userCredential.user)
       })
       .catch((error: FirebaseError) => {
         throw authErrorHandler(error)
@@ -56,22 +48,9 @@ export class AuthService {
   }: Record<keyof UserAuthData, string>): Promise<UserModel> {
     return await createUserWithEmailAndPassword(this._auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user
-        const {
-          uid,
-          email,
-          emailVerified,
-          photoURL,
-          displayName
-        } = user
-        const userData: UserModel = {
-          uid,
-          email,
-          emailVerified,
-          photoURL,
-          displayName
-        }
-        return userData
+        const user = this.dataTransformer(userCredential.user)
+        void this.setDocumentData(user, user.uid)
+        return user
       })
       .catch((error: FirebaseError) => {
         throw authErrorHandler(error)
@@ -83,22 +62,9 @@ export class AuthService {
     const auth = getAuth()
     return await signInWithPopup(auth, provider)
       .then((userCredential) => {
-        const user = userCredential.user
-        const {
-          uid,
-          email,
-          emailVerified,
-          photoURL,
-          displayName
-        } = user
-        const userData: UserModel = {
-          uid,
-          email,
-          emailVerified,
-          photoURL,
-          displayName
-        }
-        return userData
+        const user = this.dataTransformer(userCredential.user)
+        void this.setDocumentData(user, user.uid)
+        return user
       })
       .catch((error: FirebaseError) => {
         throw authErrorHandler(error)
@@ -118,18 +84,9 @@ export class AuthService {
     return this._auth.currentUser as User
   }
 
-  // TODO create admin panel in future
+  // todo create admin panel in future
   async deleteUser (user: User) {
     return await deleteUser(user)
-  }
-
-  // todo create correct method from this
-  authObserver () {
-    return this._auth.onAuthStateChanged((user) => {
-      if (user) {
-        return user
-      }
-    })
   }
 
   async logOut () {
@@ -137,6 +94,25 @@ export class AuthService {
       .catch((error): FirebaseError => {
         throw authErrorHandler(error)
       })
+  }
+
+  dataTransformer (user: User) {
+    const {
+      uid,
+      email,
+      emailVerified,
+      photoURL,
+      displayName
+    } = user
+
+    const userData: UserModel = {
+      uid,
+      email,
+      emailVerified,
+      photoURL,
+      displayName
+    }
+    return userData
   }
 }
 
