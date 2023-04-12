@@ -8,6 +8,7 @@ import { addressActions } from 'store/address/addressSlice'
 import { AuthActionTypes } from 'store/auth/actions/AuthActionTypes'
 import { authSlice } from 'store/auth/authSlice'
 import { auth } from '../firebase/firebase'
+import { NotFoundComponent } from './404/NotFoundComponent'
 import { Homepage, Layout, MenuComponent, OrderComponent } from './common'
 import { PrivateRoute } from './UI/PrivateRouter/PrivateRoute'
 
@@ -57,6 +58,7 @@ export const App: FC = (): JSX.Element => {
             <Route path={API_ENUM.HOME} element={<Homepage/>}/>
             <Route path={API_ENUM.MENU} element={<MenuComponent/>}/>
             <Route path={API_ENUM.ORDER} element={<PrivateRoute component={OrderComponent}/>}/>
+            <Route path={API_ENUM.NOT_FOUND} element={<NotFoundComponent/>}/>
           </Routes>
         </Layout>
       </Router>
